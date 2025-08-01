@@ -20,7 +20,7 @@ class Vars:
   
   LOG_CHANNEL = os.environ.get("LOG_CHANNEL", "-1002693061800")
   UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "-1002410513772")
-  DB_URL = os.environ.get("DB_URL", "")
+  DB_URL = os.environ.get("DB_URL", "mongodb+srv://JeffyBackUp:JeffyBackUp@cluster0.hgbjdhr.mongodb.net/?retryWrites=true&w=majority")
   
   PORT = int(os.environ.get("PORT", "8080"))
   ADMINS = [6266529037]
