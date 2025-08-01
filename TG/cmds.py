@@ -57,7 +57,7 @@ async def start(client, message):
 
     ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
     await message.reply_photo(
-        photo="https://example.com/your_fixed_image.jpg",  # Replace with your image URL
+        photo="https://telegra.ph/HgBotz-08-01",  # Replace with your image URL
         caption=(
             "<b><i>Welcome to the best manga pdf bot in telegram!!</i></b>\n\n"
             "<b><i>How to use? Just type the name of some manga you want to keep up to date.</i></b>\n\n"
