@@ -1,3 +1,4 @@
+
 import pyrogram
 from time import time 
 from loguru import logger
@@ -9,13 +10,12 @@ from pyrogram import utils as pyroutils
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 class Vars:
-  API_ID = int(os.environ.get("API_ID", ""))
-  API_HASH = os.environ.get("API_HASH", "")
+  API_ID = int(os.environ.get("API_ID", "28744454"))
+  API_HASH = os.environ.get("API_HASH", "debd37cef0ad1a1ce45d0be8e8c3c5e7")
   
-  BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
+  BOT_TOKEN = os.environ.get("BOT_TOKEN", "8130872612:AAEzw5W_dHbdW1EeUVH3L2vNAIVwx-K7fbc")
   plugins = dict(
     root="TG",
-    #include=["TG.users"]
   )
   
   LOG_CHANNEL = os.environ.get("LOG_CHANNEL", "")
@@ -23,7 +23,7 @@ class Vars:
   DB_URL = os.environ.get("DB_URL", "")
   
   PORT = int(os.environ.get("PORT", "8080"))
-  ADMINS = [1880221341]
+  ADMINS = [6266529037]
   
   IS_PRIVATE = os.environ.get("IS_PRIVATE", None) #True Or None  Bot is for admins only
   CONSTANT_DUMP_CHANNEL = os.environ.get("CONSTANT_DUMP_CHANNEL", None)
@@ -37,7 +37,6 @@ class Vars:
   DURATION = int(os.environ.get("DURATION", "20")) # hrs
   PICS = (
     "https://ik.imagekit.io/jbxs2z512/hd-anime-prr1y1k5gqxfcgpv.jpg?updatedAt=1748487947183",
-
     "https://ik.imagekit.io/jbxs2z512/876145-3840x2160-desktop-4k-konan-naruto-background-image%20(1).jpg?updatedAt=1751109523353",
   )
 
