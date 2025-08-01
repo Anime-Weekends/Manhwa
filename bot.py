@@ -18,8 +18,8 @@ class Vars:
     root="TG",
   )
   
-  LOG_CHANNEL = os.environ.get("LOG_CHANNEL", "")
-  UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "")
+  LOG_CHANNEL = os.environ.get("LOG_CHANNEL", "-1002693061800")
+  UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "-1002410513772")
   DB_URL = os.environ.get("DB_URL", "")
   
   PORT = int(os.environ.get("PORT", "8080"))
@@ -31,7 +31,7 @@ class Vars:
   
   DB_NAME = "Manhwadb"
   PING = time()
-  FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "")
+  FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "-1002410513772")
   SHORTENER = os.environ.get("SHORTENER", None)
   SHORTENER_API = os.environ.get("SHORTENER_API", "") # put {} for url, ex: shornter.api?url={}
   DURATION = int(os.environ.get("DURATION", "20")) # hrs
