@@ -1,9 +1,3 @@
-"""
-This module provides functions to download, convert, and compress images, and then convert them into a PDF file.
-
-Copy right (c):-  Rahat4089 and VOATcb
-Modified:- Dra-Sama
-"""
 
 from pathlib import Path
 from PIL import Image, UnidentifiedImageError
