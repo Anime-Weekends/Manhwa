@@ -31,7 +31,7 @@ class Vars:
   
   DB_NAME = "Manhwadb"
   PING = time()
-  FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "-1002410513772")
+  FORCE_SUB_CHANNELS = os.environ.get("FORCE_SUB_CHANNELS", "-1002410513772").split()
   SHORTENER = os.environ.get("SHORTENER", None)
   SHORTENER_API = os.environ.get("SHORTENER_API", "") # put {} for url, ex: shornter.api?url={}
   DURATION = int(os.environ.get("DURATION", "20")) # hrs
