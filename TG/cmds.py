@@ -572,28 +572,28 @@ async def userxsettings(client, message):
 
     button = [
       [
-        InlineKeyboardButton("🪦 File Name 🪦", callback_data="ufn"),
-        InlineKeyboardButton("🪦 Caption‌ 🪦", callback_data="ucp")
+        InlineKeyboardButton("Fɪʟᴇ ɴᴀᴍᴇ", callback_data="ufn"),
+        InlineKeyboardButton("Cᴀᴘᴛɪᴏɴ‌", callback_data="ucp")
       ],
       [
-        InlineKeyboardButton("🪦 Thumbnali 🪦", callback_data="uth"),
-        InlineKeyboardButton("🪦 Regex 🪦", callback_data="uregex")
+        InlineKeyboardButton("Tʜᴜᴍʙɴᴀʟɪ", callback_data="uth"),
+        InlineKeyboardButton("Rᴇɢᴇx", callback_data="uregex")
       ],
       [
-        InlineKeyboardButton("⚒ Banner ⚒", callback_data="ubn"),
+        InlineKeyboardButton("Bᴀɴɴᴇʀ", callback_data="ubn"),
       ],
       [
-        InlineKeyboardButton("⚙️ Password ⚙️", callback_data="upass"),
-        InlineKeyboardButton("⚙️ Megre Size ⚙️", callback_data="umegre")
+        InlineKeyboardButton("Pᴀssᴡᴏʀᴅ", callback_data="upass"),
+        InlineKeyboardButton("Mᴇɢʀᴇ sɪᴢᴇ", callback_data="umegre")
       ],
       [
-        InlineKeyboardButton("⚒ File Type ⚒", callback_data="u_file_type"),
+        InlineKeyboardButton("Fɪʟᴇ ᴛʏᴘᴇ", callback_data="u_file_type"),
       ],
     ]
     if not Vars.CONSTANT_DUMP_CHANNEL:
-      button[-1].append(InlineKeyboardButton("⚒ Dump Channel ⚒", callback_data="udc"))
+      button[-1].append(InlineKeyboardButton("Dᴜᴍᴘ ᴄʜᴀɴɴᴇʟ", callback_data="udc"))
     
-    button.append([InlineKeyboardButton("❄️ Close ❄️", callback_data="close")])
+    button.append([InlineKeyboardButton("Cʟᴏsᴇ", callback_data="close")])
     if not thumbnali:
       thumbnali = random.choice(Vars.PICS)
     try:
