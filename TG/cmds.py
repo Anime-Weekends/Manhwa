@@ -615,14 +615,32 @@ async def userxsettings(client, message):
     logger.exception(err)
     await sts.edit(err)
 
-
 @Bot.on_message(filters.command("help"))
 async def help(client, message):
-  if Vars.IS_PRIVATE:
-    if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+    if Vars.IS_PRIVATE and message.chat.id not in Vars.ADMINS:
+        return await message.reply("<code>You cannot use me baby </code>")
 
-  return await message.reply(HELP_MSG)
+    buttons = InlineKeyboardMarkup(
+        [[
+            InlineKeyboardButton("1 - Url", url="https://example.com"),
+            InlineKeyboardButton("2 - Close", callback_data="close")
+        ]]
+    )
+
+    await message.reply_photo(
+        photo="https://telegra.ph/HgBotz-08-01",  # Replace with your actual image URL or local path
+        caption=HELP_MSG,
+        reply_markup=buttons
+    )
+
+# Add a callback handler for the "Close" button
+@Bot.on_callback_query(filters.regex("close"))
+async def close_button(client, callback_query):
+    try:
+        await callback_query.message.delete()
+    except:
+        await callback_query.answer("Can't delete the message", show_alert=True)
+
 
 
 @Bot.on_message(filters.command(["deltask", "cleantasks", "del_tasks", "clean_tasks"]))
