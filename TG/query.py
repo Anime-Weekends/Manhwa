@@ -77,18 +77,18 @@ async def ch_handler(client, query):
     await retry_on_flood(query.edit_message_text
                          )(bio_list['msg'][:1022],
                            reply_markup=InlineKeyboardMarkup([[
-                               InlineKeyboardButton("📨 Chapters 📨",
+                               InlineKeyboardButton("Cʜᴀᴘᴛᴇʀs",
                                                     callback_data=c),
-                               InlineKeyboardButton("💠 Back 💠",
+                               InlineKeyboardButton("Bᴀᴄᴋ",
                                                     callback_data=f"bk.s.{sf}")
                            ]]))
   else:
     await retry_on_flood(query.edit_message_text
                          )(f"{bio_list['title']}",
                            reply_markup=InlineKeyboardMarkup([[
-                               InlineKeyboardButton("📨 Chapters 📨",
+                               InlineKeyboardButton("Cʜᴀᴘᴛᴇʀs",
                                                     callback_data=c),
-                               InlineKeyboardButton("💠 Back 💠",
+                               InlineKeyboardButton("Bᴀᴄᴋ",
                                                     callback_data=f"bk.s.{sf}")
                            ]]))
 
@@ -138,22 +138,22 @@ async def p_handler(client, query):
     if subs_bool:
       button.insert(
         0,
-        [InlineKeyboardButton("🔔 Unsubscribe 🔔", callback_data=c)])
+        [InlineKeyboardButton("Uɴsᴜʙsᴄʀɪʙᴇ", callback_data=c)])
     else:
       button.insert(
         0,
-        [InlineKeyboardButton("📯 Subscribe 📯", callback_data=c)])
+        [InlineKeyboardButton("Sᴜʙsᴄʀɪʙᴇ", callback_data=c)])
     if sf == "ck":
       callback_data = f"sgh:{sf}:{hash(chapters[0]['url'])}"
       pagination[callback_data] = (chapters, webs, rdata, "1")
-      button.append([InlineKeyboardButton("📡 Scanlation Group 📡", callback_data=callback_data)])
+      button.append([InlineKeyboardButton("Sᴄᴀɴʟᴀᴛɪᴏɴ ɢʀᴏᴜᴘ", callback_data=callback_data)])
     else:
       callback_data = f"full:{sf}:{hash(chapters[0]['url'])}"
       pagination[callback_data] = (chapters[:60], webs)
-      button.append([InlineKeyboardButton("📚 Full Page 📚", callback_data=callback_data)])
+      button.append([InlineKeyboardButton("Fᴜʟʟ ᴘᴀɢᴇ", callback_data=callback_data)])
     
     button.append(
-        [InlineKeyboardButton("💠 Back 💠", callback_data=f"bk.s.{sf}")])
+        [InlineKeyboardButton("Bᴀᴄᴋ", callback_data=f"bk.s.{sf}")])
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
   else:
     try: await query.answer("This is an old button, please redo the search", show_alert=True)
@@ -220,15 +220,15 @@ async def pg_handler(client, query):
     if subs_bool:
       button.insert(
         0,
-        [InlineKeyboardButton("🔔 Unsubscribe 🔔", callback_data=c)])
+        [InlineKeyboardButton("Uɴsᴜʙsᴄʀɪʙᴇ", callback_data=c)])
     else:
       button.insert(
         0,
-        [InlineKeyboardButton("📯 Subscribe 📯", callback_data=c)])
+        [InlineKeyboardButton("Sᴜʙsᴄʀɪʙᴇ", callback_data=c)])
     if sf == "ck":
       callback_data = f"sgh:{sf}:{hash(chapters[0]['url'])}"
       pagination[callback_data] = (chapters, webs, rdata, page)
-      button.append([InlineKeyboardButton("📡 Scanlation Group 📡", callback_data=callback_data)])
+      button.append([InlineKeyboardButton("Sᴄᴀɴʟᴀᴛɪᴏɴ ɢʀᴏᴜᴘ", callback_data=callback_data)])
     else:
       callback_data = f"full:{sf}:{hash(chapters[0]['url'])}"
       if int(page) == 1:
@@ -236,9 +236,9 @@ async def pg_handler(client, query):
       else:
         pagination[callback_data] = (chapters, webs)
       
-      button.append([InlineKeyboardButton("📚 Full Page 📚", callback_data=callback_data)])
+      button.append([InlineKeyboardButton("Fᴜʟʟ ᴘᴀɢᴇ", callback_data=callback_data)])
 
-    button.append([InlineKeyboardButton("💠 Back 💠", callback_data=f"bk.s.{sf}")])
+    button.append([InlineKeyboardButton("Bᴀᴄᴋ", callback_data=f"bk.s.{sf}")])
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
   else:
     try: await query.answer("This is an old button, please redo the search", show_alert=True)
@@ -280,7 +280,7 @@ async def cgk_handler(client, query):
       button.append([InlineKeyboardButton(f"{group_name} ({groupLen})", callback_data=c)])
     
     
-    button.append([InlineKeyboardButton("💠 Back To Chapters 💠", callback_data=rcallback_data)])
+    button.append([InlineKeyboardButton("Bᴀᴄᴋ ᴛᴏ ᴄʜᴀᴘᴛᴇʀs", callback_data=rcallback_data)])
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
     
     try: await query.answer()
@@ -311,10 +311,10 @@ async def sgk_handler(client, query):
     button = split_list(button[:60])
     callback_data = f"full:{webs.sf}:{hash(chapters[0]['url'])}"
     pagination[callback_data] = (chapters, webs)
-    button.append([InlineKeyboardButton("📖 Full Page 📖", callback_data=callback_data)])
+    button.append([InlineKeyboardButton("Fᴜʟʟ ᴘᴀɢᴇ", callback_data=callback_data)])
     
-    button.append([InlineKeyboardButton("🧸 Back To Groups 🧸", callback_data=jcallback_back)])
-    button.append([InlineKeyboardButton("💸 Back To Chapters 💸", callback_data=rcallback_data)])
+    button.append([InlineKeyboardButton("Bᴀᴄᴋ ᴛᴏ ɢʀᴏᴜᴘs", callback_data=jcallback_back)])
+    button.append([InlineKeyboardButton("Bᴀᴄᴋ ᴛᴏ ᴄʜᴀᴘᴛᴇʀs", callback_data=rcallback_data)])
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
     try: await query.answer()
     except: pass
@@ -395,10 +395,10 @@ async def subs_handler(client, query):
 
     if get_subs(str(query.from_user.id), data['url']):
       delete_sub(str(query.from_user.id), data['url'])
-      button[0] = [InlineKeyboardButton("📯 Subscribe 📯", callback_data=query.data)]
+      button[0] = [InlineKeyboardButton("Sᴜʙsᴄʀɪʙᴇ", callback_data=query.data)]
     else:
       add_sub(str(query.from_user.id), data['url'])
-      button[0] = [InlineKeyboardButton("🔔 Unsubscribe 🔔", callback_data=query.data)]
+      button[0] = [InlineKeyboardButton("Uɴsᴜʙsᴄʀɪʙᴇ", callback_data=query.data)]
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
   else:
     try: await query.answer("This is an old button, please redo the search", show_alert=True)
@@ -544,7 +544,7 @@ async def updates_handler(_, query):
         searchs[c] = (webs, result)
         button.append([InlineKeyboardButton(result['title'], callback_data=c)])
       
-      button.append([InlineKeyboardButton("🔥 Back 🔥", callback_data="bk.p")])
+      button.append([InlineKeyboardButton("Bᴀᴄᴋ", callback_data="bk.p")])
       
       try: await query.edit_message_media(InputMediaPhoto(random.choice(Vars.PICS)))
       except: pass
@@ -601,7 +601,7 @@ async def cb_handler(client, query):
           button.append(
               [InlineKeyboardButton(result['title'], callback_data=c)])
 
-        button.append([InlineKeyboardButton("🔥 Back 🔥", callback_data="bk.p")])
+        button.append([InlineKeyboardButton("Bᴀᴄᴋ", callback_data="bk.p")])
         await retry_on_flood(query.edit_message_text
                              )("<b>Select Manga</b>",
                                reply_markup=InlineKeyboardMarkup(button))
@@ -677,28 +677,28 @@ async def main_user_panel(_, query):
   )
   button = [
     [
-        InlineKeyboardButton("🪦 File Name 🪦", callback_data="ufn"),
-        InlineKeyboardButton("🪦 Caption‌ 🪦", callback_data="ucp")
+        InlineKeyboardButton("Fɪʟᴇ ɴᴀᴍᴇ:", callback_data="ufn"),
+        InlineKeyboardButton("Cᴀᴘᴛɪᴏɴ‌", callback_data="ucp")
     ],
     [
-        InlineKeyboardButton("🪦 Thumbnali 🪦", callback_data="uth"),
-        InlineKeyboardButton("🪦 Regex 🪦", callback_data="uregex")
+        InlineKeyboardButton("Tʜᴜᴍʙɴᴀʟɪ", callback_data="uth"),
+        InlineKeyboardButton("Rᴇɢᴇx", callback_data="uregex")
     ],
     [
-        InlineKeyboardButton("⚒ Banner ⚒", callback_data="ubn"),
+        InlineKeyboardButton("Bᴀɴɴᴇʀ", callback_data="ubn"),
     ],
     [
-        InlineKeyboardButton("⚙️ Password ⚙️", callback_data="upass"),
-        InlineKeyboardButton("⚙️ Megre Size ⚙️", callback_data="umegre")
+        InlineKeyboardButton("Pᴀssᴡᴏʀᴅ", callback_data="upass"),
+        InlineKeyboardButton("Mᴇɢʀᴇ sɪᴢᴇ", callback_data="umegre")
     ],
     [
-        InlineKeyboardButton("⚒ File Type ⚒", callback_data="u_file_type"),
+        InlineKeyboardButton("Fɪʟᴇ ᴛʏᴘᴇ", callback_data="u_file_type"),
     ],
   ]
   if not Vars.CONSTANT_DUMP_CHANNEL:
-    button[-1].append(InlineKeyboardButton("⚒ Dump Channel ⚒", callback_data="udc"))
+    button[-1].append(InlineKeyboardButton("Dᴜᴍᴘ ᴄʜᴀɴɴᴇʟ", callback_data="udc"))
   
-  button.append([InlineKeyboardButton("❄️ Close ❄️", callback_data="close")])
+  button.append([InlineKeyboardButton("Cʟᴏsᴇ", callback_data="close")])
   if not thumbnali:
     thumbnali = random.choice(Vars.PICS)
   
@@ -741,9 +741,9 @@ async def file_name_handler(_, query):
     thumb = "True" if not thumb.startswith("http") else thumb
 
   button = [
-    [InlineKeyboardButton("📐 sᴇᴛ/ᴄʜᴀɴɢᴇ 📐", callback_data="ufn_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="ufn_delete")],
-    [InlineKeyboardButton("📐 sᴇᴛ/ᴄʜᴀɴɢᴇ ʟᴇɴ 📐", callback_data="ufn_len_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ ʟᴇɴ 🗑️", callback_data="ufn_len_delete")],
-    [InlineKeyboardButton("🔙 ʙᴀᴄᴋ 🔙", callback_data="mus")]
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="ufn_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="ufn_delete")],
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ ", callback_data="ufn_len_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ ʟᴇɴ 🗑️", callback_data="ufn_len_delete")],
+    [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")]
   ]
   if query.data == "ufn":
     txt = users_txt.format(
@@ -860,10 +860,10 @@ async def file_name_handler(_, query):
         await retry_on_flood(query.answer)("🤖 Sucessfully Added 🤖")
         
       except ValueError:
-        await retry_on_flood(query.answer)("📐 ᴛʜɪs ɪs ɴᴏᴛ ᴀ ᴠᴀʟɪᴅ ɪɴᴛᴇɢᴇʀ 📐", show_alert=True)
+        await retry_on_flood(query.answer)("Tʜɪs ɪs ɴᴏᴛ ᴀ ᴠᴀʟɪᴅ ɪɴᴛᴇɢᴇʀ", show_alert=True)
 
     except asyncio.TimeoutError:
-      await retry_on_flood(query.answer)("📐 ᴛɪᴍᴇᴏᴜᴛ 📐")
+      await retry_on_flood(query.answer)("Tɪᴍᴇᴏᴜᴛ ")
     
     txt = users_txt.format(
       id = user_id,
@@ -943,8 +943,8 @@ async def caption_handler(_, query):
     thumb = "True" if not thumb.startswith("http") else thumb
 
   button = [
-    [InlineKeyboardButton("📐 sᴇᴛ/ᴄʜᴀɴɢᴇ 📐", callback_data="ucp_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="ucp_delete")],
-    [InlineKeyboardButton("🔙 ʙᴀᴄᴋ 🔙", callback_data="mus")]
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="ucp_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="ucp_delete")],
+    [InlineKeyboardButton("Bᴀᴄᴋ ", callback_data="mus")]
   ]
 
   if query.data == "ucp":
@@ -952,8 +952,8 @@ async def caption_handler(_, query):
 
   elif query.data == "ucp_change":
     button = [
-      [InlineKeyboardButton("📐 sᴇᴛ/ᴄʜᴀɴɢᴇ 📐", callback_data="ucp_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="ucp_delete")],
-      [InlineKeyboardButton("🔙 ʙᴀᴄᴋ 🔙", callback_data="mus")]
+      [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="ucp_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="ucp_delete")],
+      [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")]
     ]
     if not thumb:
       try: await query.edit_message_media(InputMediaPhoto(random.choice(Vars.PICS)))
@@ -1057,12 +1057,12 @@ async def thumb_handler(_, query):
   
   button = [
     [
-      InlineKeyboardButton("📐 SET/CHANGE 📐", callback_data="uth_change"),
-      InlineKeyboardButton("📐 CONSTANT 📐", callback_data="uth_constant")
+      InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="uth_change"),
+      InlineKeyboardButton("Cᴏɴsᴛᴀɴᴛ", callback_data="uth_constant")
     ],
     [
-      InlineKeyboardButton("🗑️ DELETE 🗑️", callback_data="uth_delete"),
-      InlineKeyboardButton("🔙 BACK 🔙", callback_data="mus"),
+      InlineKeyboardButton("Dᴇʟᴇᴛᴇ", callback_data="uth_delete"),
+      InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus"),
     ]
   ]
   
@@ -1132,7 +1132,7 @@ async def thumb_handler(_, query):
         sync(name, db_type)
 
       else:
-        await retry_on_flood(query.answer)("📐 ᴛʜɪs ɪs ɴᴏᴛ ᴀ ᴠᴀʟɪᴅ ᴛʜᴜᴍʙɴᴀɪʟ 📐", show_alert=True)
+        await retry_on_flood(query.answer)("Tʜɪs ɪs ɴᴏᴛ ᴀ ᴠᴀʟɪᴅ ᴛʜᴜᴍʙɴᴀɪʟ", show_alert=True)
         return
 
       thumb = "True" if not str(call_type).startswith("http") else call_type
@@ -1158,11 +1158,11 @@ async def thumb_handler(_, query):
       await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
       
       await call.delete()
-      await retry_on_flood(query.answer)("🎮 Sucessfully Added 🎮")
+      await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴀᴅᴅᴇᴅ")
     except asyncio.TimeoutError:
-      await retry_on_flood(query.answer)("📐 ᴛɪᴍᴇᴏᴜᴛ 📐")
+      await retry_on_flood(query.answer)("Tɪᴍᴇᴏᴜᴛ")
     except Exception as err:
-      await retry_on_flood(query.answer)(f"📐 {err} 📐", show_alert=True)
+      await retry_on_flood(query.answer)(f"{err}", show_alert=True)
 
   elif query.data == "uth_delete":
     if thumb:
@@ -1221,9 +1221,9 @@ async def banner_handler(_, query):
     thumb = "True" if not thumb.startswith("http") else thumb
 
   button = [
-    [InlineKeyboardButton("📐 Set/Change 1 📐", callback_data="ubn_set1"), InlineKeyboardButton("🗑️ Delete 1 🗑️", callback_data="ubn_delete1")],
-    [InlineKeyboardButton("📐 Set/Change 2 📐", callback_data="ubn_set2"), InlineKeyboardButton("🗑️ Delete 2 🗑️", callback_data="ubn_delete2")],
-    [InlineKeyboardButton("🔙 ʙᴀᴄᴋ 🔙", callback_data="mus")]
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ 1", callback_data="ubn_set1"), InlineKeyboardButton("Dᴇʟᴇᴛᴇ 1", callback_data="ubn_delete1")],
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ 2 ", callback_data="ubn_set2"), InlineKeyboardButton("Dᴇʟᴇᴛᴇ 2", callback_data="ubn_delete2")],
+    [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")]
   ]
   if query.data == "ubn":
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
@@ -1248,7 +1248,7 @@ async def banner_handler(_, query):
       elif not call_type:
         banner = call.text
       else:
-        await retry_on_flood(query.answer)("📐 ᴛʜɪs ɪs ɴᴏᴛ ᴀ ᴠᴀʟɪᴅ ᴛʜᴜᴍʙɴᴀɪʟ 📐")
+        await retry_on_flood(query.answer)("ᴛʜɪs ɪs ɴᴏᴛ ᴀ ᴠᴀʟɪᴅ ᴛʜᴜᴍʙɴᴀɪʟ")
         return
 
       if query.data == "ubn_set1":
@@ -1296,9 +1296,9 @@ async def banner_handler(_, query):
 
         await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
     except asyncio.TimeoutError:
-      await retry_on_flood(query.answer)("📐 ᴛɪᴍᴇᴏᴜᴛ 📐")
+      await retry_on_flood(query.answer)("Tɪᴍᴇᴏᴜᴛ")
     except Exception as err:
-      await retry_on_flood(query.answer)(f"📐 {err} 📐", show_alert=True)
+      await retry_on_flood(query.answer)(f"{err}", show_alert=True)
 
   elif query.data == "ubn_delete1":
     if banner1:
@@ -1324,7 +1324,7 @@ async def banner_handler(_, query):
           except: pass
 
         await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
-        await retry_on_flood(query.answer)("🎬 Sucessfully Deleted 🎬")
+        await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ ")
     else:
       await retry_on_flood(query.answer)("📐 𝒀𝒐𝒖 𝒉𝒂𝒔 𝒏𝒐𝒕 𝑺𝒆𝒕 𝑰𝒕 ! 📐", show_alert=True)
 
@@ -1352,7 +1352,7 @@ async def banner_handler(_, query):
         except: pass
 
       await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
-      await retry_on_flood(query.answer)("🎬 Sucessfully Deleted 🎬")
+      await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ")
     else:
       await retry_on_flood(query.answer)("📐 𝒀𝒐𝒖 𝒉𝒂𝒔 𝒏𝒐𝒕 𝑺𝒆𝒕 𝑰𝒕 ! 📐", show_alert=True)
 
@@ -1385,8 +1385,8 @@ async def dump_handler(_, query):
     thumb = "True" if not thumb.startswith("http") else thumb
 
   button = [
-    [InlineKeyboardButton("📐 sᴇᴛ/ᴄʜᴀɴɢᴇ 📐", callback_data="udc_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="udc_delete")],
-    [InlineKeyboardButton("🔙 ʙᴀᴄᴋ 🔙", callback_data="mus")]
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="udc_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="udc_delete")],
+    [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")]
   ]
   if query.data == "udc":
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
