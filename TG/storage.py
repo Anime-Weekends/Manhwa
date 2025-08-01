@@ -23,19 +23,20 @@ pagination = dict()
 subscribes = dict()
 
 users_txt = """
-<b>Welcome to the User Panel ! </b>
-
-<b>=> Your ID: <code>{id}</code></b>
-<b>=> File Name: <code>{file_name}</code><code>[{len}]</code></b>
-<b>=> Caption: <code>{caption}</code></b>
-<b>=> Thumbnail: <code>{thumb}</code></b>
-<b>=> File Type: <code>{type}</code></b>
-<b>=> PDF Password: <code>{password}</code></b>
-<b>=> Megre Size: <code>{megre}</code></b>
-<b>=> Regex/Zfill: <code>{regex}</code></b>
-<b>=> Banner 1: <code>{banner1}</code></b>
-<b>=> Banner 2: <code>{banner2}</code></b>
-<b>=> Dump Channel: <code>{dump}</code></b>
+<blockquote>Wᴇʟᴄᴏᴍᴇ ᴛᴏ ʏᴏᴜʀ ᴘᴇʀsᴏɴᴀʟ ʀᴇᴛʀᴇᴀᴛ ᴛʜᴇ ᴜsᴇʀ ᴘᴀɴᴇʟ !</blockquote>
+────────────────────────────
+<blockquote><b>> Yᴏᴜʀ ɪᴅ :<code>{id}</code></b>
+<b>= Fɪʟᴇ ɴᴀᴍᴇ : <code>{file_name}</code><code>[{len}]</code></b>
+<b>> Cᴀᴘᴛɪᴏɴ : <code>{caption}</code></b>
+<b>= Tʜᴜᴍʙɴᴀɪʟ : <code>{thumb}</code></b>
+<b>> Fɪʟᴇ ᴛʏᴘᴇ : <code>{type}</code></b>
+<b>= Pᴅғ ᴘᴀssᴡᴏʀᴅ : <code>{password}</code></b>
+<b>> Mᴇɢʀᴇ sɪᴢᴇ : <code>{megre}</code></b>
+<b>= Rᴇɢᴇx/ᴢғɪʟʟ : <code>{regex}</code></b>
+<b>> Bᴀɴɴᴇʀ 1 : <code>{banner1}</code></b>
+<b>= Bᴀɴɴᴇʀ 2 : <code>{banner2}</code></b>
+<b>> Dᴜᴍᴘ ᴄʜᴀɴɴᴇʟ : <code>{dump}</code></b></blockquote>
+────────────────────────────
 """
 
 web_data = {
