@@ -35,48 +35,76 @@ For example:
 """
 
 
-
 @Bot.on_message(filters.command("start"))
 async def start(client, message):
-  if Vars.IS_PRIVATE:
-    if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+    if Vars.IS_PRIVATE and message.chat.id not in Vars.ADMINS:
+        return await message.reply("<code>You cannot use me baby </code>")
 
-  if len(message.command) > 1:
-    if message.command[1] != "start":
-      user_id = message.from_user.id
-      token = message.command[1]
-      if verify_token_memory(user_id, token):
-        sts = await message.reply("Token verified! You can now use the bot.")
-        save_token(user_id, token)
-        global_tokens.pop(user_id, None)
-        await asyncio.sleep(8)
-        await sts.delete()
-      else:
-        sts = await message.reply("Invalid or expired token. Requesting a new one...")
-        await get_token(message, user_id)
-        await sts.delete()
-      return
+    if len(message.command) > 1 and message.command[1] != "start":
+        user_id = message.from_user.id
+        token = message.command[1]
+        if verify_token_memory(user_id, token):
+            sts = await message.reply("Token verified! You can now use the bot.")
+            save_token(user_id, token)
+            global_tokens.pop(user_id, None)
+            await asyncio.sleep(8)
+            await sts.delete()
+        else:
+            sts = await message.reply("Invalid or expired token. Requesting a new one...")
+            await get_token(message, user_id)
+            await sts.delete()
+        return
 
-  photo = random.choice(Vars.PICS)
-  ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
-  await message.reply_photo(
-    photo,
-    caption=(
-      "<b><i>Welcome to the best manga pdf bot in telegram!!</i></b>\n"
-      "\n"
-      "<b><i>How to use? Just type the name of some manga you want to keep up to date.</i></b>\n"
-      "\n"
-      "<b><i>For example:</i></b>\n"
-      "<i><code>One Piece</i></code>\n"
-      "\n"
-      f"<b><i>Ping:- {ping}</i></b>"
-      "\n"
-      "<b><i>Check /help for more information.</i></b>"),
-    reply_markup=InlineKeyboardMarkup([[        
-                                         InlineKeyboardButton('* Repo *', url = "https://github.com/Dra-Sama/mangabot"),
-                                         InlineKeyboardButton("* Support *", url = "https://t.me/WizardBotHelper")
-                                     ]]))
+    ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
+    await message.reply_photo(
+        photo="https://example.com/your_fixed_image.jpg",  # Replace with your image URL
+        caption=(
+            "<b><i>Welcome to the best manga pdf bot in telegram!!</i></b>\n\n"
+            "<b><i>How to use? Just type the name of some manga you want to keep up to date.</i></b>\n\n"
+            "<b><i>For example:</i></b>\n"
+            "<i><code>One Piece</code></i>\n\n"
+            f"<b><i>Ping:- {ping}</i></b>\n"
+            "<b><i>Check /help for more information.</i></b>"
+        ),
+        reply_markup=InlineKeyboardMarkup([
+            [InlineKeyboardButton("1", callback_data="btn_1"),
+             InlineKeyboardButton("2", callback_data="btn_2")],
+            [InlineKeyboardButton("3", callback_data="btn_3")],
+            [InlineKeyboardButton("About", callback_data="about"),
+             InlineKeyboardButton("Close", callback_data="close")],
+        ])
+    )
+
+@Bot.on_callback_query()
+async def callback_handler(client, callback_query):
+    data = callback_query.data
+
+    if data == "btn_1":
+        await callback_query.answer("You pressed 1!")
+
+    elif data == "btn_2":
+        await callback_query.answer("You pressed 2!")
+
+    elif data == "btn_3":
+        await callback_query.answer("You pressed 3!")
+
+    elif data == "about":
+        await callback_query.answer()
+        await callback_query.message.reply(
+            "<b>ℹ️ About This Bot:</b>\n"
+            "Search and download manga as PDF files easily.\n"
+            "Type a manga name and start reading.\n\n"
+            "Made with ❤️ by @YourUsername"
+        )
+
+    elif data == "close":
+        await callback_query.answer("Closing...", show_alert=False)
+        try:
+            await callback_query.message.delete()
+        except:
+            await callback_query.message.edit_text("❌ I couldn't delete this message.")
+
+
 
 @Bot.on_message(filters.private)
 async def on_private_message(client, message):
