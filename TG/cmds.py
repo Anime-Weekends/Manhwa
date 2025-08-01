@@ -72,47 +72,41 @@ async def start(client, message):
                                          InlineKeyboardButton("* Support *", url = "https://t.me/WizardBotHelper")
                                      ]]))
 
-from pyrogram.types import InputMediaPhoto
-
 @Bot.on_message(filters.private)
 async def on_private_message(client, message):
-    if client.SHORTENER:
-        if not await premium_user(message.from_user.id):
-            if not verify_token(message.from_user.id):
-                if message.from_user.id not in client.ADMINS:
-                    return await get_token(message, message.from_user.id)
+  if client.SHORTENER:
+    if not await premium_user(message.from_user.id):
+      if not verify_token(message.from_user.id):
+        if not message.from_user.id in client.ADMINS:
+          return await get_token(message, message.from_user.id)
+  
+  channel = client.FORCE_SUB_CHANNEL
+  if not channel:
+    return message.continue_propagation()
 
-    if not FORCE_SUB_CHANNELS:
-        return message.continue_propagation()
+  try:
+    if await client.get_chat_member(channel, message.from_user.id):
+      return message.continue_propagation()
 
-    not_joined_channels = []
+  except pyrogram.errors.UsernameNotOccupied:
+    await message.reply("Channel does not exist, therefore bot will continue to operate normally")
+    return message.continue_propagation()
 
-    for channel in FORCE_SUB_CHANNELS:
-        try:
-            await client.get_chat_member(channel, message.from_user.id)
-        except pyrogram.errors.UserNotParticipant:
-            not_joined_channels.append(channel)
-        except pyrogram.errors.UsernameNotOccupied:
-            continue
-        except pyrogram.errors.ChatAdminRequired:
-            continue
-        except Exception as e:
-            print(f"Error checking channel {channel}: {e}")
-            continue
+  except pyrogram.errors.ChatAdminRequired:
+    await message.reply("Bot is not admin of the channel, therefore bot will continue to operate normally")
+    return message.continue_propagation()
 
-    if not_joined_channels:
-        buttons = [
-            [InlineKeyboardButton("📢 Join Channel", url=f"https://t.me/{ch.lstrip('-100')}")]
-            for ch in not_joined_channels
-        ]
-        
-        await message.reply_photo(
-            photo="https://telegra.ph/HgBotz-08-01-5",  # Replace with your desired image URL or file_id
-            caption="<b>To use this bot, please join the following channel(s):</b>",
-            reply_markup=InlineKeyboardMarkup(buttons)
-        )
-        return
+  except pyrogram.errors.UserNotParticipant:
+    await message.reply("<b>In order to use the bot you must join it's channel.</b>",
+            reply_markup=InlineKeyboardMarkup([
+              [InlineKeyboardButton(' Join Channel ! ', url=f't.me/{channel}')]]))
 
+  except pyrogram.ContinuePropagation:
+    raise
+  except pyrogram.StopPropagation:
+    raise
+  except BaseException as e:
+    await message.reply(e)
     return message.continue_propagation()
 
 @Bot.on_message(filters.command(["add", "add_premium"]) & filters.user(Bot.ADMINS))
