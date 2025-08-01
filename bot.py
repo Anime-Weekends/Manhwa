@@ -18,20 +18,20 @@ class Vars:
     root="TG",
   )
   
-  LOG_CHANNEL = os.environ.get("LOG_CHANNEL", "")
-  UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "")
-  DB_URL = os.environ.get("DB_URL", "")
+  LOG_CHANNEL = os.environ.get("LOG_CHANNEL", "-1002693061800")
+  UPDATE_CHANNEL = os.environ.get("UPDATE_CHANNEL", "-1002410513772")
+  DB_URL = os.environ.get("DB_URL", "mongodb+srv://JeffyBackUp:JeffyBackUp@cluster0.hgbjdhr.mongodb.net/?retryWrites=true&w=majority")
   
   PORT = int(os.environ.get("PORT", "8080"))
   ADMINS = [6266529037]
   
   IS_PRIVATE = os.environ.get("IS_PRIVATE", None) #True Or None  Bot is for admins only
   CONSTANT_DUMP_CHANNEL = os.environ.get("CONSTANT_DUMP_CHANNEL", None)
-  WEBS_HOST = os.environ.get("WEBS_HOST", None) # For Render and Koyeb
+  WEBS_HOST = os.environ.get("WEBS_HOST", True) # For Render and Koyeb
   
   DB_NAME = "Manhwadb"
   PING = time()
-  FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "")
+  FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "-1002410513772")
   SHORTENER = os.environ.get("SHORTENER", None)
   SHORTENER_API = os.environ.get("SHORTENER_API", "") # put {} for url, ex: shornter.api?url={}
   DURATION = int(os.environ.get("DURATION", "20")) # hrs
