@@ -23,17 +23,11 @@ from sys import executable
 import shutil, psutil, time, os, platform
 import asyncio
 
-HELP_MSG = """
-<b>To download a manga just type the name of the manga you want to keep up to date.</b>
-
-For example:
-`One Piece`
-
-<blockquote expandable><i>Then you will have to choose the language of the manga. Depending on this language, you will be able to choose the website where you could download the manga. Here you will have the option to subscribe, or to choose a chapter to download. The chapters are sorted according to the website.</i></blockquote>
-
-<blockquote><b>Updates Channel : @Wizard_bots</b></blockquote>
-"""
-
+HELP_MSG = """<blockquote><b>›› Tᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀ ᴍᴀɴɢᴀ ᴊᴜsᴛ ᴛʏᴘᴇ ᴛʜᴇ ɴᴀᴍᴇ ᴏғ ᴛʜᴇ ᴍᴀɴɢᴀ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴋᴇᴇᴘ ᴜᴘ ᴛᴏ ᴅᴀᴛᴇ.</blockquote>
+<pre>𝗙𝗢𝗥 𝗘𝗫𝗔𝗠𝗣𝗟𝗘</pre>
+<blockquote>Hell's Paradise</blockquote>
+<blockquote expandable><i>ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴡᴇʙsɪᴛᴇ ᴡʜᴇʀᴇ ʏᴏᴜ ᴄᴏᴜʟᴅ ᴅᴏᴡɴʟᴏᴀᴅ ᴛʜᴇ ᴍᴀɴɢᴀ. ʜᴇʀᴇ ʏᴏᴜ ᴡɪʟʟ ʜᴀᴠᴇ ᴛʜᴇ ᴏᴘᴛɪᴏɴ ᴛᴏ sᴜʙsᴄʀɪʙᴇ, ᴏʀ ᴛᴏ ᴄʜᴏᴏsᴇ ᴀ ᴄʜᴀᴘᴛᴇʀ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ. ᴛʜᴇ ᴄʜᴀᴘᴛᴇʀs ᴀʀᴇ sᴏʀᴛᴇᴅ ᴀᴄᴄᴏʀᴅɪɴɢ ᴛᴏ ᴛʜᴇ ᴡᴇʙsɪᴛᴇ.</i></blockquote>
+<blockquote>Uᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ : @EmitingStars_Botz</b></blockquote>"""
 
 
 @Bot.on_message(filters.command("start"))
@@ -622,13 +616,13 @@ async def help(client, message):
 
     buttons = InlineKeyboardMarkup(
         [[
-            InlineKeyboardButton("1 - Url", url="https://example.com"),
-            InlineKeyboardButton("2 - Close", callback_data="close")
+            InlineKeyboardButton("Dᴇᴠᴇʟᴏᴘᴇʀ", url="https://t.me/RexySama"),
+            InlineKeyboardButton("Cʟᴏsᴇ", callback_data="close")
         ]]
     )
 
     await message.reply_photo(
-        photo="https://telegra.ph/HgBotz-08-01",  # Replace with your actual image URL or local path
+        photo="https://telegra.ph/HgBotz-08-01-5",  # Replace with your actual image URL or local path
         caption=HELP_MSG,
         reply_markup=buttons
     )
