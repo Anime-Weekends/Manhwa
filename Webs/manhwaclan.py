@@ -63,10 +63,10 @@ class ManhwaClanWebs(Scraper):
 
       des = bs.find(class_="summary__content show-more").text.strip() if bs.find(class_="summary__content show-more") else "N/A"
 
-      results['msg'] = f"<b>{results['title']}</b>\n\n"
-      results['msg'] += f"<b>Url:</b> {results['url']}\n"
-      results['msg'] += f"<b>Genres:</b> <code>{generes}</code>\n"
-      results['msg'] += f"<b>Description:</b> <code>{des}</code>\n"
+      results['msg'] = f"<b><blockquote>◈ {results['title']}</b></blockquote>\n──────────────────────────\n"
+      results['msg'] += f"<b><blockquote>›› Sɪᴛᴇ ᴜʀʟ : {results['url']}</b></blockquote>\n──────────────────────────\n"
+      results['msg'] += f"<b><blockquote>›› Gᴇɴʀᴇs : {generes}</b></blockquote>\n"
+      results['msg'] += f"<b><blockquote expandable>›› Dᴇsᴄʀɪᴘᴛɪᴏɴ : {des}</b></blockquote>\n"
 
     chapters = bs.find(class_="page-content-listing single-page") if bs else []
     results['chapters'] = chapters if chapters else []
