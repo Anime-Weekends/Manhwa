@@ -34,11 +34,37 @@ from pyrogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineK
 import asyncio
 import time
 
+from pyrogram.enums import ChatAction
+import random
+
+stickers = [
+    "CAACAgUAAxkBAAEOXBhoCoKZ76jevKX-Vc5v5SZhCeQAAXMAAh4KAALJrhlVZygbxFWWTLw2BA"
+]
+
+welcome_text = (
+    "<i><blockquote>Wᴇʟᴄᴏᴍᴇ, ʙᴀʙʏ… ɪ’ᴠᴇ ʙᴇᴇɴ ᴄʀᴀᴠɪɴɢ ʏᴏᴜʀ ᴘʀᴇsᴇɴᴄᴇ — "
+    "ғᴇᴇʟs ᴘᴇʀғᴇᴄᴛ ɴᴏᴡ ᴛʜᴀᴛ ʏᴏᴜ’ʀᴇ ʜᴇʀᴇ.</blockquote></i>"
+)
+
 @Bot.on_message(filters.command("start"))
 async def start(client, message):
     if Vars.IS_PRIVATE:
         if message.chat.id not in Vars.ADMINS:
             return await message.reply("<code>You cannot use me baby </code>")
+
+    # Send typing action and welcome message
+    await client.send_chat_action(message.chat.id, ChatAction.TYPING)
+    msg = await message.reply_text(welcome_text)
+    await asyncio.sleep(0.1)
+
+    # Show startup animation
+    await msg.edit_text("<b><i><pre>Sᴛᴀʀᴛɪɴɢ...</pre></i></b>")
+    await asyncio.sleep(0.1)
+    await msg.delete()
+
+    # Send sticker
+    await client.send_chat_action(message.chat.id, ChatAction.CHOOSE_STICKER)
+    await message.reply_sticker(random.choice(stickers))
 
     if len(message.command) > 1:
         if message.command[1] != "start":
