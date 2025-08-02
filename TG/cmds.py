@@ -172,26 +172,73 @@ async def del_expired_handler(_, msg):
   except Exception as err:
     await retry_on_flood(sts.edit)(err)
 
+
 @Bot.on_message(filters.command(["premium", "premium_users"]) & filters.user(Bot.ADMINS))
 async def premium_handler(_, msg):
-  sts = await msg.reply_text("<pre>Pʀᴏᴄᴇssɪɴɢ...</pre>")
-  try:
-    premium_users = acollection.find()
-    txt = "<b>Premium Users:-</b>\n"
-    for user in premium_users:
-      user_ids = user["user_id"]
-      user_info = await _.get_users(user_ids)
-      username = user_info.username
-      first_name = user_info.first_name
-      expiration_timestamp = user["expiration_timestamp"]
-      xt = (expiration_timestamp-(time.time()))
-      x = round(xt/(24*60*60))
-      txt += f"User id: <code>{user_ids}</code>\nUsername: @{username}\nName: <code>{first_name}</code>\nExpiration Timestamp: {x} days\n"
+    sts = await msg.reply_text("<pre>Pʀᴏᴄᴇssɪɴɢ...</pre>")
 
-    await retry_on_flood(sts.edit)(txt[:1024])
-  except Exception as err:
-    await retry_on_flood(sts.edit)(err)
-  
+    try:
+        txt = "<b>Premium Users:-</b>\n\n"
+        count = 0
+
+        async for user in acollection.find():
+            try:
+                user_id = user.get("user_id")
+                expiration_timestamp = user.get("expiration_timestamp", 0)
+
+                user_info = await _.get_users(user_id)
+                username = user_info.username or "N/A"
+                first_name = user_info.first_name or "N/A"
+
+                remaining_seconds = expiration_timestamp - time.time()
+                remaining_days = max(0, round(remaining_seconds / (24 * 60 * 60)))
+
+                txt += (
+                    f"👤 <b>User:</b> <code>{user_id}</code>\n"
+                    f"🧑‍💻 <b>Username:</b> @{username}\n"
+                    f"📛 <b>Name:</b> <code>{first_name}</code>\n"
+                    f"⏳ <b>Expires in:</b> <code>{remaining_days}</code> days\n\n"
+                )
+
+                count += 1
+            except Exception as e:
+                continue  # Skip users that cause issues
+
+        if count == 0:
+            txt = "<b>No premium users found.</b>"
+
+        # Buttons
+        buttons = InlineKeyboardMarkup([
+            [
+                InlineKeyboardButton("🛠 Manage", callback_data="manage_premium"),
+                InlineKeyboardButton("❌ Close", callback_data="close")
+            ]
+        ])
+
+        # Photo URL (replace with your own if desired)
+        photo_url = "https://i.ibb.co/PvpdSpV7/photo-2025-07-21-17-44-51-7529592614991953944.jpg"
+
+        await msg.reply_photo(
+            photo=photo_url,
+            caption=txt[:4096],
+            reply_markup=buttons,
+            message_effect_id=5104841245755180586  # Optional effect ID
+        )
+
+        await sts.delete()
+
+    except Exception as err:
+        await sts.edit(f"<b>Error:</b> <code>{err}</code>")
+
+
+@Bot.on_callback_query(filters.regex("^close$"))
+async def close_button_handler(_, query):
+    try:
+        await query.message.delete()
+    except Exception as e:
+        await query.answer("Failed to close.", show_alert=True)
+
+
 @Bot.on_message(filters.command(["broadcast", "b"]) & filters.user(Bot.ADMINS))
 async def b_handler(_, msg):
   return await borad_cast_(_, msg)
