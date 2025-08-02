@@ -340,23 +340,24 @@ async def show_ping(_, message):
   time_taken_s = (end_t - start_t) * 1000 
   
   await message.reply_text(
-    text=(f"<b><i>Total Disk Space: {total} \n"
-          f"Used Space: {used}({disk_usage}%) \n"
-          f"Free Space: {free} \n"
-          f"CPU Cores: {cpu_cores} \n"
-          f"CPU Usage: {cpu_usage}% \n"
-          f"RAM Usage: {ram_usage}%\n"
-          f"Uptime {uptime}\n"
-          f"Cloud Provider: {GET_PROVIDER()}\n"
-          f"OS: {platform.system()} \n"
-          f"OS Version: {platform.release()} \n"
-          f"Python Version: {platform.python_version()} \n"
-          f"Pyrogram Version: {_.__version__} \n"
-          f"Total I/O Data: {humanbytes(net_end.bytes_sent + net_end.bytes_recv)} \n"
-          f"Upload Rate: {humanbytes(bytes_sent/2)}/s \n"
-          f"Download Rate: {humanbytes(bytes_recv/2)}/s \n"
-          f"Current Ping: {time_taken_s:.3f} ᴍꜱ\n"
-          f"Queue: {queue.qsize()}</i></b>\n"),
+    text=("<pre>◈ Bᴏᴛ ᴄᴜʀʀᴇɴᴛ sᴛᴀᴛᴜs</pre>\n────────────────────────────\n"
+          f"<b><blockquote>›› Tᴏᴛᴀʟ ᴅɪsᴋ sᴘᴀᴄᴇ : {total} \n"
+          f"›› Usᴇᴅ sᴘᴀᴄᴇ: {used}({disk_usage}%) \n"
+          f"›› Fʀᴇᴇ sᴘᴀᴄᴇ : {free} \n"
+          f"›› Cᴘᴜ ᴄᴏʀᴇs : {cpu_cores} \n"
+          f"›› Cᴘᴜ ᴜsᴀɢᴇ : {cpu_usage}% \n"
+          f"›› Rᴀᴍ ᴜsᴀɢᴇ : {ram_usage}%\n"
+          f"›› Uᴘᴛɪᴍᴇ : {uptime}\n"
+          f"›› Cʟᴏᴜᴅ ᴘʀᴏᴠɪᴅᴇʀ : {GET_PROVIDER()}\n"
+          f"›› Os : {platform.system()} \n"
+          f"›› Os ᴠᴇʀsɪᴏɴ : {platform.release()} \n"
+          f"›› Pʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ : {platform.python_version()} \n"
+          f"›› Pʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ : {_.__version__} \n"
+          f"›› Tᴏᴛᴀʟ ɪ/ᴏ ᴅᴀᴛᴀ : {humanbytes(net_end.bytes_sent + net_end.bytes_recv)} \n"
+          f"›› Uᴘʟᴏᴀᴅ ʀᴀᴛᴇ : {humanbytes(bytes_sent/2)}/s \n"
+          f"›› Dᴏᴡɴʟᴏᴀᴅ ʀᴀᴛᴇ : {humanbytes(bytes_recv/2)}/s \n"
+          f"›› Cᴜʀʀᴇɴᴛ ᴘɪɴɢ : {time_taken_s:.3f} ᴍꜱ\n"
+          f"›› Qᴜᴇᴜᴇ : {queue.qsize()},
     quote=True
     )
   await st.delete()
