@@ -27,7 +27,7 @@ HELP_MSG = """<blockquote><b>›› Tᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀ ᴍᴀɴɢ�
 <pre>𝗙𝗢𝗥 𝗘𝗫𝗔𝗠𝗣𝗟𝗘</pre>
 <blockquote>Hell's Paradise</blockquote>
 <blockquote expandable><i>ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴡᴇʙsɪᴛᴇ ᴡʜᴇʀᴇ ʏᴏᴜ ᴄᴏᴜʟᴅ ᴅᴏᴡɴʟᴏᴀᴅ ᴛʜᴇ ᴍᴀɴɢᴀ. ʜᴇʀᴇ ʏᴏᴜ ᴡɪʟʟ ʜᴀᴠᴇ ᴛʜᴇ ᴏᴘᴛɪᴏɴ ᴛᴏ sᴜʙsᴄʀɪʙᴇ, ᴏʀ ᴛᴏ ᴄʜᴏᴏsᴇ ᴀ ᴄʜᴀᴘᴛᴇʀ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ. ᴛʜᴇ ᴄʜᴀᴘᴛᴇʀs ᴀʀᴇ sᴏʀᴛᴇᴅ ᴀᴄᴄᴏʀᴅɪɴɢ ᴛᴏ ᴛʜᴇ ᴡᴇʙsɪᴛᴇ.</i></blockquote>
-<blockquote>Uᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ : @EmitingStars_Botz</b></blockquote>"""
+<blockquote><b><a href='https://t.me/EmitingStars_Botz'>‣ Uᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ : Eᴍɪᴛɪɴɢ Sᴛᴀʀs</a></b></blockquote>"""
 
 from pyrogram import Client
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, InputMediaPhoto
@@ -393,9 +393,9 @@ async def shell(_, message):
 async def export_(_, message):
   cmd = message.text.split(maxsplit=1)
   if len(cmd) == 1:
-    return await message.reply("<code>File Name Not given.</code>")
+    return await message.reply("<pre>Fɪʟᴇ ɴᴀᴍᴇ ɴᴏᴛ ɢɪᴠᴇɴ.</pre>")
   
-  sts = await message.reply("<code>Processing...</code>")
+  sts = await message.reply("<pre>Fɪʟᴇ ɴᴀᴍᴇ ɴᴏᴛ ɢɪᴠᴇɴ.</pre>")
   try:
     file_name = cmd[1]
     if "*2" in file_name:
@@ -405,7 +405,7 @@ async def export_(_, message):
     if os.path.exists(file_name):
       await message.reply_document(file_name)
     else:
-      await sts.edit("<code>File Not Found</code>")
+      await sts.edit("<pre>Fɪʟᴇ ɴᴏᴛ ғᴏᴜɴᴅ</pre>")
   except Exception as err:
     await sts.edit(err)
   
@@ -414,9 +414,9 @@ async def export_(_, message):
 async def import_(_, message):
   cmd = message.text.split(maxsplit=1)
   if len(cmd) == 1:
-    return await message.reply("<code>File Name Not given.</code>")
+    return await message.reply("<pre>Fɪʟᴇ ɴᴀᴍᴇ ɴᴏᴛ ɢɪᴠᴇɴ.</pre>")
 
-  sts = await message.reply("<code>Processing...</code>")
+  sts = await message.reply("<pre>Pʀᴏᴄᴇssɪɴɢ...</pre>")
   try:
     file_name = cmd[1]
     if "*2" in file_name:
@@ -426,7 +426,7 @@ async def import_(_, message):
     if not os.path.exists(file_name):
       await message.download(file_name, file_name=file_name)
     else:
-      await sts.edit("<code>File Path Found</code>")
+      await sts.edit("<pre>Fɪʟᴇ ᴘᴀᴛʜ ғᴏᴜɴᴅ</pre>")
   except Exception as err:
     await sts.edit(err)
 
@@ -435,7 +435,7 @@ async def clean(_, message):
   directory = '/app'
   ex = (".mkv", ".mp4", ".zip", ".pdf", ".png", ".epub", ".temp")
   protected_dirs = (".git", "venv", "env", "__pycache__")  # Directories to SKIP
-  sts = await message.reply_text("🔍 Cleaning files...")
+  sts = await message.reply_text("<pre>Cʟᴇᴀɴɪɴɢ ғɪʟᴇs...</pre>")
   deleted_files = []
   removed_dirs = []
   
@@ -489,18 +489,18 @@ async def clean(_, message):
         except Exception as e:
           pass
 
-    msg = "**🧹 Cleaning Logs:**\n"
+    msg = "<pre>Cʟᴇᴀɴɪɴɢ ʟᴏɢs :</pre>\n"
     if deleted_files:
-      msg += f"🗑 **Deleted {len(deleted_files)} files:**\n" + "\n".join(deleted_files[:10])  # Show first 10
+      msg += f"Dᴇʟᴇᴛᴇᴅ {len(deleted_files)} Fɪʟᴇs :\n" + "\n".join(deleted_files[:10])  # Show first 10
       if len(deleted_files) > 10:
-        msg += f"\n...and {len(deleted_files) - 10} more."
+        msg += f"\n... ᴀɴᴅ {len(deleted_files) - 10} ᴍᴏʀᴇ."
       else:
-        msg += "✅ No files deleted."
+        msg += "<b><blockquote>✔ Nᴏ ғɪʟᴇs ᴅᴇʟᴇᴛᴇᴅ.</b></blockquote>"
 
     if removed_dirs:
-      msg += f"\n\n📁 **Removed {len(removed_dirs)} empty directories:**\n" + "\n".join(removed_dirs[:5])
+      msg += f"\n\nRᴇᴍᴏᴠᴇᴅ {len(removed_dirs)} ᴇᴍᴘᴛʏ ᴅɪʀᴇᴄᴛᴏʀɪᴇs :\n" + "\n".join(removed_dirs[:5])
       if len(removed_dirs) > 5:
-        msg += f"\n...and {len(removed_dirs) - 5} more."
+        msg += f"\n... ᴀɴᴅ {len(removed_dirs) - 5} ᴍᴏʀᴇ."
 
     await sts.edit(msg[:4096])  # Telegram's max message length
   except Exception as err:
@@ -523,11 +523,11 @@ def remove_dir(path):
 async def updates_(_, message):
   if Vars.IS_PRIVATE:
     if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+      return await message.reply("<pre>Yᴏᴜ ᴄᴀɴɴᴏᴛ ᴜsᴇ ᴍᴇ ʙᴀʙʏ</pre>")
   try:
     await message.reply_photo(
       photo=random.choice(Vars.PICS),
-      caption="<b>Choose Sites</b>",
+      caption="<pre>Cʜᴏᴏsᴇ sɪᴛᴇs</pre>",
       reply_markup=plugins_list("updates"),
       quote=True,
     )
@@ -535,14 +535,14 @@ async def updates_(_, message):
     await asyncio.sleep(err.value)
     await message.reply_photo(
       photo=random.choice(Vars.PICS),
-      caption="<b>Choose Sites</b>",
+      caption="<pre>Cʜᴏᴏsᴇ sɪᴛᴇs</pre>",
       reply_markup=plugins_list("updates"),
       quote=True,
     )
   except:
     await message.reply_photo(
       photo=random.choice(Vars.PICS),
-      caption="<b>Choose Sites</b>",
+      caption="<pre>Cʜᴏᴏsᴇ sɪᴛᴇs</pre>",
       reply_markup=plugins_list("updates"),
       quote=True,
     )
@@ -551,17 +551,17 @@ async def updates_(_, message):
 async def queue_msg_handler(client, message):
   if Vars.IS_PRIVATE:
     if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+      return await message.reply("<pre>ʏᴏᴜ ᴄᴀɴɴᴏᴛ ᴜsᴇ ᴍᴇ ʙᴀʙʏ</pre>")
 
-  await message.reply(f"<blockquote><b><i>Your Queue: {queue.get_count_(message.from_user.id)}\nTotal Queue Size: {int(queue.qsize())+1}</i></b></blockquote>")
+  await message.reply(f"<blockquote><b>›› Yᴏᴜʀ ǫᴜᴇᴜᴇ : {queue.get_count_(message.from_user.id)}\n\n›› Tᴏᴛᴀʟ ǫᴜᴇᴜᴇ sɪᴢᴇ : {int(queue.qsize())+1}</b></blockquote>")
 
 @Bot.on_message(filters.command(["us", "user_setting", "user_panel"]))
 async def userxsettings(client, message):
   if Vars.IS_PRIVATE:
     if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+      return await message.reply("<pre>Yᴏᴜ ᴄᴀɴɴᴏᴛ ᴜsᴇ ᴍᴇ ʙᴀʙʏ</pre>")
   
-  sts = await message.reply("<code>Processing...</code>")
+  sts = await message.reply("<pre>Pʀᴏᴄᴇssɪɴɢ...</pre>")
   try:
     db_type = "uts"
     name = Vars.DB_NAME
@@ -675,7 +675,7 @@ async def close_button(client, callback_query):
 async def deltask(client, message):
   if Vars.IS_PRIVATE:
     if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+      return await message.reply("<pre>Yᴏᴜ ᴄᴀɴɴᴏᴛ ᴜsᴇ ᴍᴇ ʙᴀʙʏ</pre>")
 
   user_id = message.from_user.id
   numb = 0
@@ -683,18 +683,18 @@ async def deltask(client, message):
     for task_id in queue._user_data[user_id]:
       await queue.delete_task(task_id)
       numb += 1
-    await message.reply(f"All tasks deleted:- {numb}")
+    await message.reply(f"<pre>Aʟʟ ᴛᴀsᴋs ᴅᴇʟᴇᴛᴇᴅ :- {numb}</pre>")
   else:
-    await message.reply("No tasks found")
+    await message.reply("<pre>Nᴏ ᴛᴀsᴋs ғᴏᴜɴᴅ</pre>")
 
 
-@Bot.on_message(filters.command("subs"))
+@Bot.on_message(filters.command("subscribe"))
 async def subs(_, message):
   if _.IS_PRIVATE:
     if message.chat.id not in _.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+      return await message.reply("<pre>Yᴏᴜ ᴄᴀɴɴᴏᴛ ᴜsᴇ ᴍᴇ ʙᴀʙʏ</pre>")
   
-  sts = await message.reply_text("<code>Getting Subs...</code>")
+  sts = await message.reply_text("<pre>Gᴇᴛᴛɪɴɢ ʏᴏᴜʀ sᴜʙsᴄʀɪʙᴇ ʟɪsᴛ...</pre>")
   txt = "<b>Subs List:-</b>\n"
   try:
     subs_list = get_subs(message.from_user.id)
