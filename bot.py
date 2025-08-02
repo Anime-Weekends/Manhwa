@@ -34,7 +34,9 @@ class Vars:
     DB_NAME = "Manhwadb"
     PING = time()
 
-    FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "EmitingStars_Botz")
+    # Multi-channel support from env
+    FORCE_SUB_CHANNELS = os.environ.get("FORCE_SUB_CHANNEL", "-1002410513772")
+    AUTH_CHANNELS = [ch.strip() for ch in FORCE_SUB_CHANNELS.replace(",", " ").split() if ch.strip()]
     SHORTENER = os.environ.get("SHORTENER", "True")
     SHORTENER_API = os.environ.get("SHORTENER_API", "https://shortxlinks.com/api?api=bea2b83467261cec3b811d76a9bd84533234219a&url={}")
     DURATION = int(os.environ.get("DURATION", "20"))  # hours
