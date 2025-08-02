@@ -117,10 +117,6 @@ async def button_callback(client: Client, callback_query: CallbackQuery):
     elif data == "btn_close":
         await callback_query.message.delete()
 
-    else:
-        await callback_query.answer("This button is not yet configured.", show_alert=True)
-
-
 @Bot.on_message(filters.private)
 async def on_private_message(client, message):
   if client.SHORTENER:
