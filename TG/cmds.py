@@ -357,7 +357,7 @@ async def show_ping(_, message):
           f"›› Uᴘʟᴏᴀᴅ ʀᴀᴛᴇ : {humanbytes(bytes_sent/2)}/s \n"
           f"›› Dᴏᴡɴʟᴏᴀᴅ ʀᴀᴛᴇ : {humanbytes(bytes_recv/2)}/s \n"
           f"›› Cᴜʀʀᴇɴᴛ ᴘɪɴɢ : {time_taken_s:.3f} ᴍꜱ\n"
-          f"›› Qᴜᴇᴜᴇ : {queue.qsize()},
+          f"›› Qᴜᴇᴜᴇ : {queue.qsize()}</i></b>\n</b></blockquote>\n────────────────────────────"),
     quote=True
     )
   await st.delete()
