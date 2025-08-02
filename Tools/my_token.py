@@ -75,14 +75,26 @@ async def get_token(message, user_id):
     
     token_link = f"https://telegram.me/{Bot.username}?start={new_token}"
     short_token_link = get_short(token_link)
+
     button = InlineKeyboardButton("🖥 Get Token 🖥", url=short_token_link)
     button2 = InlineKeyboardButton("📺 Watch Tutorial 📺", url="https://t.me/+KymUiadSyutiZjM1")
     keyboard = InlineKeyboardMarkup([
         [button],
         [button2],
-        [InlineKeyboardButton("💸 Bot Premuim 💸", callback_data="premuim")],
+        [InlineKeyboardButton("💸 Bot Premium 💸", callback_data="premuim")],
         [InlineKeyboardButton("⛓️‍💥 Close ⛓️‍💥", callback_data="close")],
     ])
-    await message.reply("Invalid or expired token. Here is your new token link. Click the button below to use it.\n\n **Valid Till 1 days.**", reply_markup=keyboard)
 
+    photo = "https://telegra.ph/file/2cc4a77bcf37422aa1c68.jpg"  # Replace with your image URL
 
+    await message.reply_photo(
+        photo=photo,
+        caption=(
+            "⚠️ <b>Invalid or expired token</b>\n\n"
+            "🔐 Here is your new token link. Click the button below to use it.\n"
+            "🕒 <b>Valid for:</b> 1 day"
+        ),
+        reply_markup=keyboard
+    )
+
+#f
