@@ -34,14 +34,14 @@ class Vars:
     DB_NAME = "Manhwadb"
     PING = time()
 
-    FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "-1002410513772")
+    FORCE_SUB_CHANNEL = os.environ.get("FORCE_SUB_CHANNEL", "EmitingStars_Botz")
     SHORTENER = os.environ.get("SHORTENER", None)
     SHORTENER_API = os.environ.get("SHORTENER_API", "")
     DURATION = int(os.environ.get("DURATION", "20"))  # hours
 
     PICS = (
-        "https://ik.imagekit.io/jbxs2z512/hd-anime-prr1y1k5gqxfcgpv.jpg?updatedAt=1748487947183",
-        "https://ik.imagekit.io/jbxs2z512/876145-3840x2160-desktop-4k-konan-naruto-background-image%20(1).jpg?updatedAt=1751109523353",
+        "https://i.ibb.co/vvCVDWVw/photo-2025-08-02-05-03-11-7533849357079019548.jpg",
+        "https://i.ibb.co/pCPzSCc/photo-2025-08-02-05-03-12-7533849369963921436.jpg",
     )
 
 
