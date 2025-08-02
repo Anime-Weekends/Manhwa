@@ -695,36 +695,36 @@ async def subs(_, message):
       return await message.reply("<pre>Yᴏᴜ ᴄᴀɴɴᴏᴛ ᴜsᴇ ᴍᴇ ʙᴀʙʏ</pre>")
   
   sts = await message.reply_text("<pre>Gᴇᴛᴛɪɴɢ ʏᴏᴜʀ sᴜʙsᴄʀɪʙᴇ ʟɪsᴛ...</pre>")
-  txt = "<b>Subs List:-</b>\n"
+  txt = "<b>◈ Sᴜʙsᴄʀɪʙɪɴɢ ʟɪsᴛ :-</b>\n────────────────────────────\n"
   try:
     subs_list = get_subs(message.from_user.id)
     for sub in subs_list:
-      txt += f"<blockquote>=> <code>{sub}</code></blockquote>\n"
+      txt += f"<blockquote>›› <code>{sub}</code></blockquote>\n────────────────────────────\n"
     
-    txt += f"<blockquote>=> <code>Total Subs:- {len(subs_list)}</code></blockquote>"
-    txt += f"\n\n<b>To Unsubs:-</b>\n<blockquote><code>/unsubs url</code></blockquote>"
+    txt += f"<blockquote>=> <code>Tᴏᴛᴀʟ sᴜʙsᴄʀɪʙᴇ :- {len(subs_list)}</code></blockquote>\n────────────────────────────"
+    txt += f"\n<b>Tᴏ ᴜɴsᴜʙsᴄʀɪʙᴇ :-</b>\n<blockquote><code>/unsubscribe</code> ᴜʀʟ</blockquote>\n────────────────────────────"
     await retry_on_flood(sts.edit)(txt[:1024])
   except Exception as err:
     await retry_on_flood(sts.edit)(err)
 
-@Bot.on_message(filters.command("unsubs"))
+@Bot.on_message(filters.command("unsubscribe"))
 async def unsubs(_, message):
   if _.IS_PRIVATE:
     if message.chat.id not in _.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+      return await message.reply("<pre>Yᴏᴜ ᴄᴀɴɴᴏᴛ ᴜsᴇ ᴍᴇ ʙᴀʙʏ</pre>")
   
-  sts = await message.reply_text("<code>Processing to Unsubs...</code>")
+  sts = await message.reply_text("<pre>Pʀᴏᴄᴇssɪɴɢ ᴛᴏ ᴜɴsᴜʙsᴄʀɪʙᴇ...</pre>")
   try:
     txt = message.text.split(" ")[1]
     if txt in dts:
       if message.from_user.id in dts[txt]['users']:
         dts[txt]['users'].remove(message.from_user.id)
         sync(_.DB_NAME, 'dts')
-        await retry_on_flood(sts.edit)("<code>Sucessfully Unsubs</code>")
+        await retry_on_flood(sts.edit)("<pre>Sᴜᴄᴇssғᴜʟʟʏ ᴜɴsᴜʙsᴄʀɪʙᴇ</pre>")
       else:
-        await retry_on_flood(sts.edit)("<code>You are not subscribed to this manga</code>")
+        await retry_on_flood(sts.edit)("<b><blockquote>Yᴏᴜ ᴀʀᴇ ɴᴏᴛ sᴜʙsᴄʀɪʙᴇᴅ ᴛᴏ ᴛʜɪs ᴍᴀɴɢᴀ | ᴍᴀɴʜᴡᴀ</b></blockquote></code>")
     else:
-      await retry_on_flood(sts.edit)("<code>Manga not found</code>")
+      await retry_on_flood(sts.edit)("<pre>Mᴀɴɢᴀ ɴᴏᴛ ғᴏᴜɴᴅ</pre>")
   except Exception as err:
     await retry_on_flood(sts.edit)(err)
 
@@ -733,7 +733,7 @@ async def unsubs(_, message):
 async def search_group(client, message):
   if Vars.IS_PRIVATE:
     if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+      return await message.reply("<pre>Yᴏᴜ ᴄᴀɴɴᴏᴛ ᴜsᴇ ᴍᴇ ʙᴀʙʏ</pre>")
   
   if client.SHORTENER:
     if not await premium_user(message.from_user.id):
@@ -742,24 +742,24 @@ async def search_group(client, message):
           return await get_token(message, message.from_user.id)
     
   try: txt = message.text.split(" ")[1]
-  except: return await message.reply("<code>Format:- /search Manga </code>")
+  except: return await message.reply("<b><blockquote>Fᴏʀᴍᴀᴛ :-<code>/search Bleach</code></b></blockquote>")
   photo = random.choice(Vars.PICS)
 
   try: 
-    await message.reply_photo(photo, caption="Select search Webs .", reply_markup=plugins_list(), quote=True)
+    await message.reply_photo(photo, caption="<pre>Sᴇʟᴇᴄᴛ sᴇᴀʀᴄʜ ᴡᴇʙsɪᴛᴇ</pre>", reply_markup=plugins_list(), quote=True)
   except ValueError: 
-    await message.reply_photo(photo, caption="Select search Webs .", reply_markup=plugins_list(), quote=True)
+    await message.reply_photo(photo, caption="<pre>Sᴇʟᴇᴄᴛ sᴇᴀʀᴄʜ ᴡᴇʙsɪᴛᴇ</pre>", reply_markup=plugins_list(), quote=True)
 
 
 @Bot.on_message(filters.text & filters.private)
 async def search(client, message):
   if Vars.IS_PRIVATE:
     if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+      return await message.reply("<pre>Yᴏᴜ ᴄᴀɴɴᴏᴛ ᴜsᴇ ᴍᴇ ʙᴀʙʏ</pre>")
 
   txt = message.text
   photo = random.choice(Vars.PICS)
   button = []
   if not txt.startswith("/"):
-    try: await message.reply_photo(photo, caption="Select search Webs .", reply_markup=plugins_list(), quote=True)
-    except ValueError: await message.reply_photo(photo, caption="Select search Webs .", reply_markup=plugins_list(), quote=True)
+    try: await message.reply_photo(photo, caption="<pre>Sᴇʟᴇᴄᴛ sᴇᴀʀᴄʜ ᴡᴇʙsɪᴛᴇ</pre>", reply_markup=plugins_list(), quote=True)
+    except ValueError: await message.reply_photo(photo, caption="<pre>Sᴇʟᴇᴄᴛ sᴇᴀʀᴄʜ ᴡᴇʙsɪᴛᴇ</pre>", reply_markup=plugins_list(), quote=True)
