@@ -29,13 +29,15 @@ HELP_MSG = """<blockquote><b>›› Tᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀ ᴍᴀɴɢ�
 <blockquote expandable><i>ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴡᴇʙsɪᴛᴇ ᴡʜᴇʀᴇ ʏᴏᴜ ᴄᴏᴜʟᴅ ᴅᴏᴡɴʟᴏᴀᴅ ᴛʜᴇ ᴍᴀɴɢᴀ. ʜᴇʀᴇ ʏᴏᴜ ᴡɪʟʟ ʜᴀᴠᴇ ᴛʜᴇ ᴏᴘᴛɪᴏɴ ᴛᴏ sᴜʙsᴄʀɪʙᴇ, ᴏʀ ᴛᴏ ᴄʜᴏᴏsᴇ ᴀ ᴄʜᴀᴘᴛᴇʀ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ. ᴛʜᴇ ᴄʜᴀᴘᴛᴇʀs ᴀʀᴇ sᴏʀᴛᴇᴅ ᴀᴄᴄᴏʀᴅɪɴɢ ᴛᴏ ᴛʜᴇ ᴡᴇʙsɪᴛᴇ.</i></blockquote>
 <blockquote>Uᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ : @EmitingStars_Botz</b></blockquote>"""
 
-
+from pyrogram import Client
+from pyrogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, InputMediaPhoto
+import asyncio
+import time
 
 @Bot.on_message(filters.command("start"))
-async def start(client, message):
-    if Vars.IS_PRIVATE:
-        if message.chat.id not in Vars.ADMINS:
-            return await message.reply("<code>You cannot use me baby</code>")
+async def start(client, message: Message):
+    if Vars.IS_PRIVATE and message.chat.id not in Vars.ADMINS:
+        return await message.reply("<code>You cannot use me baby</code>")
 
     if len(message.command) > 1:
         if message.command[1] != "start":
@@ -55,7 +57,7 @@ async def start(client, message):
 
     ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
     await message.reply_photo(
-        photo="https://i.ibb.co/dJW7wm3X/photo-2025-07-31-20-51-24-7533357364280295448.jpg",  # <-- Your fixed image path or URL here
+        photo="https://i.ibb.co/dJW7wm3X/photo-2025-07-31-20-51-24-7533357364280295448.jpg",
         caption=(
             "<b><i>Welcome to the best manga PDF bot on Telegram!!</i></b>\n\n"
             "<b><i>How to use? Just type the name of some manga you want to keep up to date.</i></b>\n\n"
@@ -72,7 +74,6 @@ async def start(client, message):
         ])
     )
 
-from pyrogram.types import InputMediaPhoto
 
 @Bot.on_callback_query()
 async def button_callback(client: Client, callback_query: CallbackQuery):
@@ -81,14 +82,12 @@ async def button_callback(client: Client, callback_query: CallbackQuery):
     if data == "btn_about":
         await callback_query.message.edit_media(
             media=InputMediaPhoto(
-                media="https://envs.sh/Qi.jpg/HGBOTZ.jpg",  # ✅ Your 'About' image URL here
+                media="https://i.ibb.co/vvF5c8R/sample-about-image.jpg",  # ✅ Use your real image URL here
                 caption="<b>ℹ️ This bot lets you search and get the latest manga in PDF format easily.</b>"
             ),
             reply_markup=InlineKeyboardMarkup([
-                [
-                    InlineKeyboardButton("🔙 Back", callback_data="btn_back"),
-                    InlineKeyboardButton("🌐 Visit Repo", url="https://github.com/Dra-Sama/mangabot")
-                ]
+                [InlineKeyboardButton("🔙 Back", callback_data="btn_back"),
+                 InlineKeyboardButton("🌐 Visit Repo", url="https://github.com/Dra-Sama/mangabot")]
             ])
         )
 
@@ -96,7 +95,7 @@ async def button_callback(client: Client, callback_query: CallbackQuery):
         ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
         await callback_query.message.edit_media(
             media=InputMediaPhoto(
-                media="https://i.ibb.co/dJW7wm3X/photo-2025-07-31-20-51-24-7533357364280295448.jpg",  # ✅ Back to original start image
+                media="https://i.ibb.co/dJW7wm3X/photo-2025-07-31-20-51-24-7533357364280295448.jpg",
                 caption=(
                     "<b><i>Welcome to the best manga PDF bot on Telegram!!</i></b>\n\n"
                     "<b><i>How to use? Just type the name of some manga you want to keep up to date.</i></b>\n\n"
@@ -116,6 +115,13 @@ async def button_callback(client: Client, callback_query: CallbackQuery):
 
     elif data == "btn_close":
         await callback_query.message.delete()
+
+    elif data in ["btn_1", "btn_2", "btn_3"]:
+        await callback_query.answer(f"You clicked button {data[-1]}", show_alert=True)
+
+    else:
+        await callback_query.answer("Unknown button clicked.", show_alert=True)
+
 
 @Bot.on_message(filters.private)
 async def on_private_message(client, message):
