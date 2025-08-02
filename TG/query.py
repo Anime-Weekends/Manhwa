@@ -50,19 +50,19 @@ async def ch_handler(client, query):
   user_id = reply.from_user.id
   query_user_id = query.from_user.id
   if user_id != query_user_id:
-    return await query.answer("This is not for you", show_alert=True)
+    return await query.answer("Tʜɪs ɪs ɴᴏᴛ ғᴏʀ ʏᴏᴜ", show_alert=True)
 
   try:
     webs, data = searchs[query.data]
   except:
-    return await query.answer("This is an old button, please redo the search",
+    return await query.answer("Tʜɪs ɪs ᴀɴ ᴏʟᴅ ʙᴜᴛᴛᴏɴ , ᴘʟᴇᴀsᴇ ʀᴇᴅᴏ ᴛʜᴇ sᴇᴀʀᴄʜ",
                               show_alert=True)
 
   try: bio_list = await webs.get_chapters(data)
-  except: return await query.answer("No chapters found", show_alert=True)
+  except: return await query.answer("Nᴏ ᴄʜᴀᴘᴛᴇʀs ғᴏᴜɴᴅ", show_alert=True)
   
   if not bio_list:
-    return await query.answer("No chapters found", show_alert=True)
+    return await query.answer("Nᴏ ᴄʜᴀᴘᴛᴇʀs ғᴏᴜɴᴅ", show_alert=True)
 
   if "poster" in bio_list:
     try:
@@ -103,7 +103,7 @@ async def p_handler(client, query):
     user_id = reply.from_user.id
     query_user_id = query.from_user.id
     if user_id != query_user_id:
-      return await query.answer("This is not for you", show_alert=True)
+      return await query.answer("Tʜɪs ɪs ɴᴏᴛ ғᴏʀ ʏᴏᴜ", show_alert=True)
 
     webs, data, rdata = chaptersList[query.data]
     sf = webs.sf
@@ -115,7 +115,7 @@ async def p_handler(client, query):
 
     subs_bool = get_subs(str(query.from_user.id), rdata['url'])
     if not chapters:
-      return await query.answer("No chapters found", show_alert=True)
+      return await query.answer("Nᴏ ᴄʜᴀᴘᴛᴇʀs ғᴏᴜɴᴅ", show_alert=True)
 
     button = []
     for chapter in chapters:
@@ -168,7 +168,7 @@ async def pg_handler(client, query):
   user_id = reply.from_user.id
   query_user_id = query.from_user.id
   if user_id != query_user_id:
-    return await query.answer("This is not for you", show_alert=True)
+    return await query.answer("Tʜɪs ɪs ɴᴏᴛ ғᴏʀ ʏᴏᴜ", show_alert=True)
 
   data = query.data.split(":")
   page = data[-1]
@@ -181,7 +181,7 @@ async def pg_handler(client, query):
     if sf == "ck":
       chapters = await webs.get_chapters(rdata, int(page))
       if not chapters:
-        return await query.answer("No chapters found", show_alert=True)
+        return await query.answer("Nᴏ ᴄʜᴀᴘᴛᴇʀs ғᴏᴜɴᴅ", show_alert=True)
 
       chapters = webs.iter_chapters(chapters)
     else:
@@ -191,7 +191,7 @@ async def pg_handler(client, query):
         chapters = webs.iter_chapters(data, int(page))
 
     if not chapters:
-      return await query.answer("No chapters found", show_alert=True)
+      return await query.answer("Nᴏ ᴄʜᴀᴘᴛᴇʀs ғᴏᴜɴᴅ", show_alert=True)
 
     button = []
     for chapter in chapters:
@@ -241,7 +241,7 @@ async def pg_handler(client, query):
     button.append([InlineKeyboardButton("Bᴀᴄᴋ", callback_data=f"bk.s.{sf}")])
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
   else:
-    try: await query.answer("This is an old button, please redo the search", show_alert=True)
+    try: await query.answer("Tʜɪs ɪs ᴀɴ ᴏʟᴅ ʙᴜᴛᴛᴏɴ , ᴘʟᴇᴀsᴇ ʀᴇᴅᴏ ᴛʜᴇ sᴇᴀʀᴄʜ", show_alert=True)
     except: pass
 
 
@@ -254,7 +254,7 @@ async def cgk_handler(client, query):
     user_id = reply.from_user.id
     query_user_id = query.from_user.id
     if user_id != query_user_id:
-      return await query.answer("This is not for you", show_alert=True)
+      return await query.answer("Tʜɪs ɪs ɴᴏᴛ ғᴏʀ ʏᴏᴜ", show_alert=True)
     
     chapters, webs, rdata, page = pagination[query.data]
     data = {}
@@ -286,7 +286,7 @@ async def cgk_handler(client, query):
     try: await query.answer()
     except: pass
   else:
-    try: await query.answer("This is an old button, please redo the search", show_alert=True)
+    try: await query.answer("Tʜɪs ɪs ᴀɴ ᴏʟᴅ ʙᴜᴛᴛᴏɴ , ᴘʟᴇᴀsᴇ ʀᴇᴅᴏ ᴛʜᴇ sᴇᴀʀᴄʜ", show_alert=True)
     except: pass
 
 
@@ -298,7 +298,7 @@ async def sgk_handler(client, query):
       user_id = reply.from_user.id
       query_user_id = query.from_user.id
       if user_id != query_user_id:
-        return await query.answer("This is not for you", show_alert=True)
+        return await query.answer("Tʜɪs ɪs ɴᴏᴛ ғᴏʀ ʏᴏᴜ", show_alert=True)
     
     chapters, webs, page, rcallback_data, jcallback_back = pagination[query.data]
     chapters = list(reversed(chapters)) 
@@ -319,7 +319,7 @@ async def sgk_handler(client, query):
     try: await query.answer()
     except: pass
   else:
-    try: await query.answer("This is an old button, please redo the search", show_alert=True)
+    try: await query.answer("Tʜɪs ɪs ᴀɴ ᴏʟᴅ ʙᴜᴛᴛᴏɴ , ᴘʟᴇᴀsᴇ ʀᴇᴅᴏ ᴛʜᴇ sᴇᴀʀᴄʜ", show_alert=True)
     except: pass
 
 
@@ -332,7 +332,7 @@ async def full_handler(client, query):
     user_id = reply.from_user.id
     query_user_id = query.from_user.id
     if user_id != query_user_id:
-      return await query.answer("This is not for you", show_alert=True)
+      return await query.answer("Tʜɪs ɪs ɴᴏᴛ ғᴏʀ ʏᴏᴜ", show_alert=True)
 
     chapters, webs = pagination[query.data]
     added_item = []
@@ -365,15 +365,15 @@ async def full_handler(client, query):
         if not episode_num in added_item:
           pictures = await webs.get_pictures(url=data['url'], data=data)
           if not pictures:
-            await retry_on_flood(sts.edit)("No pictures found")
+            await retry_on_flood(sts.edit)("Nᴏ ᴘɪᴄᴛᴜʀᴇs ғᴏᴜɴᴅ")
 
           task_id = await queue.put((data, pictures, query, None, webs), query.from_user.id)
           added_item.append(episode_num)
     
-    try: await query.answer("Added To Queue", show_alert=True)
+    try: await query.answer("Aᴅᴅᴇᴅ ᴛᴏ ǫᴜᴇᴜᴇ", show_alert=True)
     except: pass
   else:
-    try: await query.answer("This is an old button, please redo the search", show_alert=True)
+    try: await query.answer("Tʜɪs ɪs ᴀɴ ᴏʟᴅ ʙᴜᴛᴛᴏɴ , ᴘʟᴇᴀsᴇ ʀᴇᴅᴏ ᴛʜᴇ sᴇᴀʀᴄʜ", show_alert=True)
     except: pass
 
 
@@ -388,7 +388,7 @@ async def subs_handler(client, query):
     user_id = reply.from_user.id
     query_user_id = query.from_user.id
     if user_id != query_user_id:
-      return await query.answer("This is not for you", show_alert=True)
+      return await query.answer("Tʜɪs ɪs ɴᴏᴛ ғᴏʀ ʏᴏᴜ", show_alert=True)
 
     reply_markup = query.message.reply_markup
     button = reply_markup.inline_keyboard
@@ -415,25 +415,25 @@ async def pic_handler(client, query):
     user_id = reply.from_user.id
     query_user_id = query.from_user.id
     if user_id != query_user_id:
-      return await query.answer("This is not for you", show_alert=True)
+      return await query.answer("Tʜɪs ɪs ɴᴏᴛ ғᴏʀ ʏᴏᴜ", show_alert=True)
 
     pictures = await webs.get_pictures(url=data['url'], data=data)
     if not pictures:
-      return await query.answer("No pictures found", show_alert=True)
+      return await query.answer("Nᴏ ᴘɪᴄᴛᴜʀᴇs ғᴏᴜɴᴅ", show_alert=True)
 
     sts = await retry_on_flood(query.message.reply_text
-       )("<code>Adding...</code>")
+       )("<pre>Aᴅᴅɪɴɢ...</pre>")
 
-    txt = f"Manga Name: {data['manga_title']}\nChapter: - {data['title']}"
+    txt = f"<b><blockquote>Mᴀɴɢᴀ ɴᴀᴍᴇ : {data['manga_title']}</b></blockquote>\n<b><blockquote>Cʜᴀᴘᴛᴇʀ : - {data['title']}</b></blockquote>"
 
     task_id = await queue.put((data, pictures, query, sts, webs), query.from_user.id)
     button = [[
-        InlineKeyboardButton(" Cancel Your Tasks ",
+        InlineKeyboardButton(" Cᴀɴᴄᴇʟ ʏᴏᴜʀ ᴛᴀsᴋs ",
                              callback_data=f"cl:{task_id}")
     ]]
     await retry_on_flood(sts.edit)(txt, reply_markup=InlineKeyboardMarkup(button))
   else:
-    try: await query.answer("This is an old button, please redo the search", show_alert=True)
+    try: await query.answer("Tʜɪs ɪs ᴀɴ ᴏʟᴅ ʙᴜᴛᴛᴏɴ , ᴘʟᴇᴀsᴇ ʀᴇᴅᴏ ᴛʜᴇ sᴇᴀʀᴄʜ", show_alert=True)
     except: pass
 
 
@@ -444,9 +444,9 @@ async def cl_handler(client, query):
   reply = query.message.reply_to_message
 
   if await queue.delete_task(task_id):
-    await retry_on_flood(query.message.edit_text)("<b>Task Cancelled !</b>")
+    await retry_on_flood(query.message.edit_text)("<pre>Tᴀsᴋ ᴄᴀɴᴄᴇʟʟᴇᴅ !</pre>")
   else:
-    await retry_on_flood(query.answer)("Task Not Found", show_alert=True)
+    await retry_on_flood(query.answer)("Tᴀsᴋ ɴᴏᴛ ғᴏᴜɴᴅ", show_alert=True)
 
 
 @Bot.on_callback_query(filters.regex("^bk"))
@@ -457,7 +457,7 @@ async def bk_handler(client, query):
     user_id = reply.from_user.id
     query_user_id = query.from_user.id
     if user_id != query_user_id:
-      return await query.answer("This is not for you", show_alert=True)
+      return await query.answer("Tʜɪs ɪs ɴᴏᴛ ғᴏʀ ʏᴏᴜ", show_alert=True)
   except:
     pass
   
@@ -491,7 +491,7 @@ async def bk_handler(client, query):
         try:
           if reply.startswith("/updates"):
             try:
-              await query.message.edit_text("<i>Updating...</i>")
+              await query.message.edit_text("<pre>Uᴘᴅᴀᴛɪɴɢ...</pre>")
             except:
               pass
             
@@ -501,13 +501,13 @@ async def bk_handler(client, query):
             
           else:
             try:
-              await query.message.edit_text("<i>Searching...</i>")
+              await query.message.edit_text("<pre>Sᴇᴀʀᴄʜɪɴɢ...</pre>")
             except:
               pass
             
             results = await webs.search(search)
         except:
-          return await query.edit_message_text("<b>No results found</b>", reply_markup=reply_markup)
+          return await query.edit_message_text("<pre>Nᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ</pre>", reply_markup=reply_markup)
         
         if results:
           button = []
@@ -520,11 +520,11 @@ async def bk_handler(client, query):
           button.append(
               [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="bk.p")])
           await retry_on_flood(query.edit_message_text
-                               )("<b>Select Manga</b>",
+                               )("<b>Sᴇʟᴇᴄᴛ ᴍᴀɴɢᴀ</b>",
                                  reply_markup=InlineKeyboardMarkup(button))
         else:
           await retry_on_flood(query.message.edit_text
-                               )("<b>No results found</b>",
+                               )("<b>Nᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ</b>",
                                  reply_markup=reply_markup)
 
 
@@ -533,7 +533,7 @@ async def updates_handler(_, query):
   sf = query.data.split("_")[-1]
   webs = get_webs(sf)
   
-  await retry_on_flood(query.edit_message_text)("<i>Getting Updates...</i>")
+  await retry_on_flood(query.edit_message_text)("<pre>Gᴇᴛᴛɪɴɢ ᴜᴘᴅᴀᴛᴇs...</pre>")
   if webs:
     results = await webs.get_updates()
     button = []
@@ -549,14 +549,14 @@ async def updates_handler(_, query):
       try: await query.edit_message_media(InputMediaPhoto(random.choice(Vars.PICS)))
       except: pass
       
-      await retry_on_flood(query.edit_message_text)("<b>Select Manga</b>", reply_markup=InlineKeyboardMarkup(button))
+      await retry_on_flood(query.edit_message_text)("<b>Sᴇʟᴇᴄᴛ ᴍᴀɴɢᴀ</b>", reply_markup=InlineKeyboardMarkup(button))
       try: await query.answer()
       except: pass
     else:
-      try: await query.answer("It's hard to add Website updates ", show_alert=True)
+      try: await query.answer("Iᴛ's ʜᴀʀᴅ ᴛᴏ ᴀᴅᴅ ᴡᴇʙsɪᴛᴇ ᴜᴘᴅᴀᴛᴇs", show_alert=True)
       except: pass
   else:
-    try: await query.answer("Websites Not Found AT Database", show_alert=True)
+    try: await query.answer("Wᴇʙsɪᴛᴇs ɴᴏᴛ ғᴏᴜɴᴅ ᴀᴛ ᴅᴀᴛᴀʙᴀsᴇ", show_alert=True)
     except: pass
 
 
@@ -570,7 +570,7 @@ async def cb_handler(client, query):
   user_id = reply.from_user.id
   query_user_id = query.from_user.id
   if user_id != query_user_id:
-    return await query.answer("This is not for you", show_alert=True)
+    return await query.answer("Tʜɪs ɪs ɴᴏᴛ ғᴏʀ ʏᴏᴜ", show_alert=True)
 
   reply = reply.text
   if reply.startswith("/search"):
@@ -586,12 +586,12 @@ async def cb_handler(client, query):
 
       reply_markup = query.message.reply_markup
       try:
-        await query.edit_message_text("<i>Searching...</i>")
+        await query.edit_message_text("<pre>Sᴇᴀʀᴄʜɪɴɢ...</pre>")
       except:
         pass
 
       try: results = await web_data[i].search(search)
-      except: await query.edit_message_text("<b>No results found</b>", reply_markup=reply_markup)
+      except: await query.edit_message_text("<pre>Nᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ</pre>", reply_markup=reply_markup)
       
       if results:
         button = []
@@ -603,11 +603,11 @@ async def cb_handler(client, query):
 
         button.append([InlineKeyboardButton("Bᴀᴄᴋ", callback_data="bk.p")])
         await retry_on_flood(query.edit_message_text
-                             )("<b>Select Manga</b>",
+                             )("<b>Sᴇʟᴇᴄᴛ ᴍᴀɴɢᴀ</b>",
                                reply_markup=InlineKeyboardMarkup(button))
       else:
         await retry_on_flood(query.edit_message_text
-                             )("<b>No results found</b>",
+                             )("<b>Nᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ</b>",
                                reply_markup=reply_markup)
 
       try:
@@ -618,7 +618,7 @@ async def cb_handler(client, query):
         return
 
   try:
-    await query.answer('This is an old button, please redo the search',
+    await query.answer('Tʜɪs ɪs ᴀɴ ᴏʟᴅ ʙᴜᴛᴛᴏɴ , ᴘʟᴇᴀsᴇ ʀᴇᴅᴏ ᴛʜᴇ sᴇᴀʀᴄʜ',
                        show_alert=True)
   except:
     pass
@@ -677,7 +677,7 @@ async def main_user_panel(_, query):
   )
   button = [
     [
-        InlineKeyboardButton("Fɪʟᴇ ɴᴀᴍᴇ:", callback_data="ufn"),
+        InlineKeyboardButton("Fɪʟᴇ ɴᴀᴍᴇ", callback_data="ufn"),
         InlineKeyboardButton("Cᴀᴘᴛɪᴏɴ‌", callback_data="ucp")
     ],
     [
@@ -741,8 +741,8 @@ async def file_name_handler(_, query):
     thumb = "True" if not thumb.startswith("http") else thumb
 
   button = [
-    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="ufn_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="ufn_delete")],
-    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ ", callback_data="ufn_len_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ ʟᴇɴ 🗑️", callback_data="ufn_len_delete")],
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="ufn_change"), InlineKeyboardButton("Dᴇʟᴇᴛᴇ", callback_data="ufn_delete")],
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ ", callback_data="ufn_len_change"), InlineKeyboardButton("Dᴇʟᴇᴛᴇ ʟᴇɴ", callback_data="ufn_len_delete")],
     [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")]
   ]
   if query.data == "ufn":
@@ -766,7 +766,7 @@ async def file_name_handler(_, query):
     try: await query.edit_message_media(InputMediaPhoto(random.choice(Vars.PICS)))
     except: pass
     
-    await retry_on_flood(query.edit_message_caption)("<b>📐 Send File Name 📐 \n<u><i>Params:</u></i>\n=><code>{manga_title}</code>: Manga Name \n=> <code>{chapter_num}</code>: Chapter Number</b>")
+    await retry_on_flood(query.edit_message_caption)("<b><pre>Sᴇɴᴅ ғɪʟᴇ ɴᴀᴍᴇ</pre>\n────────────────────────────\n<b><blockquote>= <code>{manga_title}</code> : Mᴀɴɢᴀ ɴᴀᴍᴇ \n> <code>{chapter_num}</code> : Cʜᴀᴘᴛᴇʀ ɴᴜᴍʙᴇʀ</b></blockquote>\n────────────────────────────")
     try:
       call = await _.listen(user_id=int(user_id), timeout=60)
 
@@ -837,7 +837,7 @@ async def file_name_handler(_, query):
       
       await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
       
-      try: await query.answer("Sucessfully Deleted")
+      try: await query.answer("Sᴜᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ")
       except: pass
     else:
       await retry_on_flood(query.answer)("Yᴏᴜ ʜᴀs ɴᴏᴛ sᴇᴛ ɪᴛ !", show_alert=True)
@@ -846,7 +846,7 @@ async def file_name_handler(_, query):
     try: await query.edit_message_media(InputMediaPhoto(random.choice(Vars.PICS)))
     except: pass
     
-    await retry_on_flood(query.edit_message_caption)("<b>📐 Send File Name Len 📐\n Example: 15, 20, 50</b>")
+    await retry_on_flood(query.edit_message_caption)("<pre>Sᴇɴᴅ ғɪʟᴇ ɴᴀᴍᴇ ʟᴇɴ</pre>\n────────────────────────────\n<b><blockquote>Exᴀᴍᴘʟᴇ: 15, 20, 50</b></blockquote>\n────────────────────────────")
     try:
       call = await _.listen(int(user_id), timeout=60)
       try:
@@ -943,7 +943,7 @@ async def caption_handler(_, query):
     thumb = "True" if not thumb.startswith("http") else thumb
 
   button = [
-    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="ucp_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="ucp_delete")],
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="ucp_change"), InlineKeyboardButton("Dᴇʟᴇᴛᴇ", callback_data="ucp_delete")],
     [InlineKeyboardButton("Bᴀᴄᴋ ", callback_data="mus")]
   ]
 
@@ -952,14 +952,14 @@ async def caption_handler(_, query):
 
   elif query.data == "ucp_change":
     button = [
-      [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="ucp_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="ucp_delete")],
+      [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="ucp_change"), InlineKeyboardButton("Dᴇʟᴇᴛᴇ", callback_data="ucp_delete")],
       [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")]
     ]
     if not thumb:
       try: await query.edit_message_media(InputMediaPhoto(random.choice(Vars.PICS)))
       except: pass
     
-    await retry_on_flood(query.edit_message_caption)("<b>📐 Send Caption 📐 \n<u>Note:</u> <blockquote>Use HTML Tags For Bold, Italic,etc</blockquote>\n<u>Params:</u>\n=><code>{manga_title}</code>: Manga Name \n=> <code>{chapter_num}</code>: Chapter Number\n<code>{file_name}</code>: File Name</b>")
+    await retry_on_flood(query.edit_message_caption)("<pre>Sᴇɴᴅ ᴄᴀᴘᴛɪᴏɴ</pre>\n<u>Note:</u> <blockquote>Use HTML Tags For Bold, Italic,etc</blockquote>\n<u>Params:</u>\n=><code>{manga_title}</code>: Manga Name \n=> <code>{chapter_num}</code>: Chapter Number\n<code>{file_name}</code>: File Name</b>")
     try:
       call = await _.listen(user_id=int(user_id), timeout=60)
 
@@ -1081,7 +1081,7 @@ async def thumb_handler(_, query):
       len = file_name_len,
       password = password,
     )
-    txt += "\n\n<blockquote><b>CONSTANT:- THE PARCTICULAR POSTER OF MANGA WILL ADDED AS FILE THUMBNALI</b></blockquote>"
+    txt += "\n\n<blockquote><b>Cᴏɴsᴛᴀɴᴛ :- ᴛʜᴇ ᴘᴀʀᴄᴛɪᴄᴜʟᴀʀ ᴘᴏsᴛᴇʀ ᴏғ ᴍᴀɴɢᴀ ᴡɪʟʟ ᴀᴅᴅᴇᴅ ᴀs ғɪʟᴇ ᴛʜᴜᴍʙɴᴀʟɪ</b></blockquote>"
     
     if thumb:
       try: await query.edit_message_media(InputMediaPhoto(thumb))
@@ -1117,7 +1117,7 @@ async def thumb_handler(_, query):
     await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴀᴅᴅᴇᴅ")
     
   elif query.data == "uth_change":
-    await retry_on_flood(query.edit_message_caption)("<b>📐 Send Thumbnail 📐 \n<u>Note:</u> <blockquote>You Can Send Links or Images Docs.. </blockquote></b>")
+    await retry_on_flood(query.edit_message_caption)("<pre>Sᴇɴᴅ ᴛʜᴜᴍʙɴᴀɪʟ</pre>\n────────────────────────────\n<blockquote><b>›› Yᴏᴜ ᴄᴀɴ sᴇɴᴅ ʟɪɴᴋs ᴏʀ ɪᴍᴀɢᴇs ᴅᴏᴄs..</blockquote></b>\n────────────────────────────")
     try:
       call = await _.listen(user_id=int(user_id), timeout=60)
       call_type = call.photo or call.document or None
@@ -1239,7 +1239,7 @@ async def banner_handler(_, query):
       try: await query.edit_message_media(InputMediaPhoto(random.choice(Vars.PICS)))
       except: pass
     
-    await retry_on_flood(query.edit_message_caption)("<b>📐 Send Banner 📐 \n<u>Note:</u> <blockquote>You Can Send Links or Images Docs.. </blockquote></b>")
+    await retry_on_flood(query.edit_message_caption)("<pre>◈ Sᴇɴᴅ ʙᴀɴɴᴇʀ\n────────────────────────────\n<blockquote><b>›› Yᴏᴜ ᴄᴀɴ sᴇɴᴅ ʟɪɴᴋs ᴏʀ ɪᴍᴀɢᴇs ᴅᴏᴄs..</blockquote></b>\n────────────────────────────")
     try:
       call = await _.listen(user_id=int(user_id), timeout=60)
       call_type = call.photo or call.document or None
@@ -1385,13 +1385,13 @@ async def dump_handler(_, query):
     thumb = "True" if not thumb.startswith("http") else thumb
 
   button = [
-    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="udc_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="udc_delete")],
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="udc_change"), InlineKeyboardButton("Dᴇʟᴇᴛᴇ", callback_data="udc_delete")],
     [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")]
   ]
   if query.data == "udc":
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
   elif query.data == "udc_change":
-    await retry_on_flood(query.edit_message_caption)("<b>📐 Send Dump Channel 📐 \n<u>Note:</u> <blockquote>You Can Send Username(without @) or Channel Id or Forward Message from Channel.. </blockquote></b>")
+    await retry_on_flood(query.edit_message_caption)("<pre>Sᴇɴᴅ ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ<pre>\n────────────────────────────<b><blockquote>›› Yᴏᴜ ᴄᴀɴ sᴇɴᴅ ᴜsᴇʀɴᴀᴍᴇ (ᴡɪᴛʜᴏᴜᴛ @) ᴏʀ ᴄʜᴀɴɴᴇʟ ɪᴅ ᴏʀ ғᴏʀᴡᴀʀᴅ ᴍᴇssᴀɢᴇ ғʀᴏᴍ ᴄʜᴀɴɴᴇʟ..</blockquote></b>\n────────────────────────────")
     try:
       call = await _.listen(user_id=int(user_id), timeout=60)
       if call.text:
@@ -1491,13 +1491,13 @@ async def type_handler(_, query):
 
   button = [[]]
   if "PDF" in type:
-    button[0].append(InlineKeyboardButton("📙 PDF 📙", callback_data="u_file_type_pdf"))
+    button[0].append(InlineKeyboardButton("Pᴅғ", callback_data="u_file_type_pdf"))
   else:
-    button[0].append(InlineKeyboardButton("❗PDF ❗", callback_data="u_file_type_pdf"))
+    button[0].append(InlineKeyboardButton("Pᴅғ", callback_data="u_file_type_pdf"))
   if "CBZ" in type:
-    button[0].append(InlineKeyboardButton("📂 CBZ 📂", callback_data="u_file_type_cbz"))
+    button[0].append(InlineKeyboardButton("Cʙᴢ", callback_data="u_file_type_cbz"))
   else:
-    button[0].append(InlineKeyboardButton("❗CBZ ❗", callback_data="u_file_type_cbz"))
+    button[0].append(InlineKeyboardButton("Cʙᴢ", callback_data="u_file_type_cbz"))
 
   button.append([InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")])
 
@@ -1509,13 +1509,13 @@ async def type_handler(_, query):
       uts[user_id]['setting']["type"].remove("PDF")
       sync(name, db_type)
 
-      button[0][0] = InlineKeyboardButton("❗PDF ❗", callback_data="u_file_type_pdf")
+      button[0][0] = InlineKeyboardButton("Pᴅғ", callback_data="u_file_type_pdf")
 
     else:
       uts[user_id]['setting']["type"].append("PDF")
       sync(name, db_type)
 
-      button[0][0] = InlineKeyboardButton("📙 PDF 📙", callback_data="u_file_type_pdf")
+      button[0][0] = InlineKeyboardButton("Pᴅғ", callback_data="u_file_type_pdf")
 
     type = uts[user_id].get("setting", {}).get("type", "None")
     txt = users_txt.format(
@@ -1543,13 +1543,13 @@ async def type_handler(_, query):
       uts[user_id]['setting']["type"].remove("CBZ")
       sync(name, db_type)
 
-      button[0][1] = InlineKeyboardButton("❗CBZ ❗", callback_data="u_file_type_cbz")
+      button[0][1] = InlineKeyboardButton("Cʙᴢ", callback_data="u_file_type_cbz")
 
     else:
       uts[user_id]['setting']["type"].append("CBZ")
       sync(name, db_type)
 
-      button[0][1] = InlineKeyboardButton("📂 CBZ 📂", callback_data="u_file_type_cbz")
+      button[0][1] = InlineKeyboardButton("Cʙᴢ", callback_data="u_file_type_cbz")
 
     type = uts[user_id].get("setting", {}).get("type", "None")
     txt = users_txt.format(
@@ -1600,7 +1600,7 @@ async def megre_handler(_, query):
   if thumb:
     thumb = "True" if not thumb.startswith("http") else thumb
   button = [
-    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="umegre_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="umegre_delete")],
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="umegre_change"), InlineKeyboardButton("Dᴇʟᴇᴛᴇ", callback_data="umegre_delete")],
     [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")]
   ]
   if query.data == "umegre":
@@ -1706,7 +1706,7 @@ async def password_handler(_, query):
     thumb = "True" if not thumb.startswith("http") else thumb
 
   button = [
-    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="upass_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="upass_delete")],
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="upass_change"), InlineKeyboardButton("Dᴇʟᴇᴛᴇ", callback_data="upass_delete")],
     [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")]
   ]
 
