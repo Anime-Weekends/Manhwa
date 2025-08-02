@@ -76,13 +76,13 @@ async def get_token(message, user_id):
     token_link = f"https://telegram.me/{Bot.username}?start={new_token}"
     short_token_link = get_short(token_link)
 
-    button = InlineKeyboardButton("🖥 Get Token 🖥", url=short_token_link)
-    button2 = InlineKeyboardButton("📺 Watch Tutorial 📺", url="https://t.me/+KymUiadSyutiZjM1")
+    button = InlineKeyboardButton("Vᴇʀɪғʏ ʜᴇʀᴇ", url=short_token_link)
+    button2 = InlineKeyboardButton("Tᴜᴛᴏʀɪᴀʟ", url="https://t.me/+KymUiadSyutiZjM1")
     keyboard = InlineKeyboardMarkup([
         [button],
         [button2],
-        [InlineKeyboardButton("💸 Bot Premium 💸", callback_data="premuim")],
-        [InlineKeyboardButton("⛓️‍💥 Close ⛓️‍💥", callback_data="close")],
+        [InlineKeyboardButton("Pʀᴇᴍɪᴜᴍ", callback_data="premuim")],
+        [InlineKeyboardButton("Cʟᴏsᴇ", callback_data="close")],
     ])
 
     photo = "https://i.ibb.co/PvpdSpV7/photo-2025-07-21-17-44-51-7529592614991953944.jpg"  # Replace with your image URL
@@ -94,7 +94,7 @@ async def get_token(message, user_id):
             "<b><blockquote>Tᴏᴋᴇɴ ᴛɪᴍᴇᴏᴜᴛ : 1 ᴅᴀʏ</b></blockquote>\n\n"
             "<b><blockquote>Wʜᴀᴛ ɪs ᴛʜᴇ ᴛᴏᴋᴇɴ ?</b></blockquote>"
             "<b><blockquote>Tʜɪs ɪs ᴀɴ ᴀᴅs ᴛᴏᴋᴇɴ. ᴘᴀssɪɴɢ ᴏɴᴇ ᴀᴅ ᴀʟʟᴏᴡs ʏᴏᴜ ᴛᴏ ᴜsᴇ ᴛʜᴇ ʙᴏᴛ ғᴏʀ 1 ᴅᴀʏ</b></blockquote>\n"
-            "<b><blockquote>Oᴡᴇʀᴇᴅ ʙʏ : @EmitingStars_Botz</b></blockquote>"
+            "<b><blockquote><spoiler>Oᴡᴇʀᴇᴅ ʙʏ : @EmitingStars_Botz</spoiler></b></blockquote>"
         ),
         reply_markup=keyboard
     )
