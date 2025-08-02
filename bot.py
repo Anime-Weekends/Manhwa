@@ -25,7 +25,7 @@ class Vars:
     )
 
     PORT = int(os.environ.get("PORT", "8080"))
-    ADMINS = [6266529037]
+    ADMINS = [6266529037, 5548954124]
 
     IS_PRIVATE = os.environ.get("IS_PRIVATE", None)  # True or None
     CONSTANT_DUMP_CHANNEL = os.environ.get("CONSTANT_DUMP_CHANNEL", None)
