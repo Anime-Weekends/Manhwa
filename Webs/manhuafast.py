@@ -63,10 +63,10 @@ class ManhuaFastWebs(Scraper):
       
       des = bs.find(class_="summary__content show-more").text.strip() if bs.find(class_="summary__content show-more") else "N/A"
       
-      results['msg'] = f"<b>{results['title']}</b>\n\n"
-      results['msg'] += f"<b>Url:</b> <code>{results['url']}</code>\n"
-      results['msg'] += f"<b>Genres:</b> <code>{generes}</code>\n"
-      results['msg'] += f"<b>Description:</b> <code>{des}</code>\n"
+      results['msg'] = f"<b><blockquote>◈ {results['title']}</b></blockquote>\n──────────────────────────\n"
+      results['msg'] += f"<b><blockquote>›› Sɪᴛᴇ ᴜʀʟ : {results['url']}\n──────────────────────────\n"
+      results['msg'] += f"<b><blockquote>›› Gᴇɴʀᴇs : {generes}</b></blockquote>\n──────────────────────────\n"
+      results['msg'] += f"<b><blockquote expandable>›› Dᴇsᴄʀɪᴘᴛɪᴏɴ : {des}</b></blockquote>\n"
       
     try: 
       chapters = await self.post(f"{results['url']}ajax/chapters/", headers=self.headers)
