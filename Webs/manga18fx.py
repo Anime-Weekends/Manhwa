@@ -49,14 +49,14 @@ class Manga18fxWebs(Scraper):
     container = bs.find(class_="genres-content") if bs else None
     geners = container.text.strip() if container else "N/A"
 
-    msg = f"<b>{results['title']}</b>\n"
-    msg += f"<b>Url</b>: {results['url']}\n"
+    msg = f"<b><blockquote>◈ {results['title']}</b></blockquote>\n──────────────────────────\n"
+    msg += f"<b><blockquote>›› Sɪᴛᴇ ᴜʀʟ : {results['url']}</b></blockquote>\n──────────────────────────\n"
 
-    msg += f"<b>Geners</b>: <code>{geners}</code>\n\n"
+    msg += f"<b><blockquote>›› Gᴇɴʀᴇs : {geners}\n──────────────────────────\n"
     container = bs.find(class_="dsct")
 
     des = container.text.strip() if container else "N/A"
-    msg += f"<b>Description</b>: <code>{des}</code>\n"
+    msg += f"<b><blockquote expandable>›› Dᴇsᴄʀɪᴘᴛɪᴏɴ : {des}</b></blockquote>\n"
 
     results['msg'] = msg
     
