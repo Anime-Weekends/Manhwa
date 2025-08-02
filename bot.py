@@ -28,7 +28,7 @@ class Vars:
     ADMINS = [6266529037, 5548954124]
 
     IS_PRIVATE = os.environ.get("IS_PRIVATE", None)  # True or None
-    CONSTANT_DUMP_CHANNEL = os.environ.get("CONSTANT_DUMP_CHANNEL", None)
+    CONSTANT_DUMP_CHANNEL = os.environ.get("CONSTANT_DUMP_CHANNEL", "True")
     WEBS_HOST = os.environ.get("WEBS_HOST", "True").lower() == "true"
 
     DB_NAME = "Manhwadb"
