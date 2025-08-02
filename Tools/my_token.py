@@ -94,7 +94,7 @@ async def get_token(message, user_id):
         caption=(
             "<b><blockquote>Yᴏᴜʀ ᴛᴏᴋᴇɴ ʜᴀs ᴇxᴘɪʀᴇᴅ. ᴘʟᴇᴀsᴇ ʀᴇғʀᴇsʜ ʏᴏᴜʀ ᴛᴏᴋᴇɴ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ.</b></blockquote>\n"
             "<b><blockquote>Tᴏᴋᴇɴ ᴛɪᴍᴇᴏᴜᴛ : 1 ᴅᴀʏ</b></blockquote>\n\n"
-            "<b><blockquote>Wʜᴀᴛ ɪs ᴛʜᴇ ᴛᴏᴋᴇɴ ?</b></blockquote>"
+            "<b><blockquote>Wʜᴀᴛ ɪs ᴛʜᴇ ᴛᴏᴋᴇɴ ?</b></blockquote>\n"
             "<b><blockquote>Tʜɪs ɪs ᴀɴ ᴀᴅs ᴛᴏᴋᴇɴ. ᴘᴀssɪɴɢ ᴏɴᴇ ᴀᴅ ᴀʟʟᴏᴡs ʏᴏᴜ ᴛᴏ ᴜsᴇ ᴛʜᴇ ʙᴏᴛ ғᴏʀ 1 ᴅᴀʏ</b></blockquote>\n"
             "<b><blockquote><spoiler>Oᴡᴇʀᴇᴅ ʙʏ : @EmitingStars_Botz</spoiler></b></blockquote>"
         ),
