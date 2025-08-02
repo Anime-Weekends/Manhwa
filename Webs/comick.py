@@ -56,23 +56,23 @@ class ComickWebs(Scraper):
     artist_list = [a["name"] for a in series["artists"]]
     artists = ", ".join(artist_list) or "N/A"
 
-    msg = f"<b>{title} (<code>{year}</code>)</b>\n\n" #msg += f"<b>Alt Names:</b> <code>{alts}</code>\n"
+    msg = f"<b><blockquote>◈ {title} (<code>{year}</code>)</b></blockquote></b>\n────────────────────────────\n" #msg += f"<b>Alt Names:</b> <code>{alts}</code>\n"
     #msg += f"<b>NSFW:</b> <code>{nsfw}</code>\n"
-    msg += f"<b>Rating:</b> <code>{rating}</code>\n" #msg += f"<b>Content Type:</b> <code>{content_rating}</code>\n" #msg += f"<b>Demographic:</b> <code>{demographic}</code>\n"
-    msg += f"<b>Genres:</b> <code>{genres}</code>\n"
-    msg += f"<b>Last Chapter:</b> <code>{last_chap}</code>\n"
-    msg += f"<b>Status:</b> <code>{status}</code>\n"
-    msg += f"<b>Authors:</b> <code>{authors}</code>\n"
+    msg += f"<b><blockquote>›› Rᴀᴛɪɴɢ :</b> {rating}\n" #msg += f"<b>Content Type:</b> <code>{content_rating}</code>\n" #msg += f"<b>Demographic:</b> <code>{demographic}</code>\n"
+    msg += f"›› Gᴇɴʀᴇs : {genres}\n"
+    msg += f"›› Lᴀsᴛ ᴄʜᴀᴘᴛᴇʀ : {last_chap}\n"
+    msg += f"›› Sᴛᴀᴛᴜs : {status}\n"
+    msg += f"›› Aᴜᴛʜᴏʀs : <{authors}</b></blockquote>\n"
     if authors != artists:
-        msg += f"<b>Artists:</b> <code>{artists}</code>\n"
+        msg += f"<b><blockquote>›› Aʀᴛɪsᴛs: {artists}</b></blockquote>\n"
 
     su = int(len(desc)) + int(len(msg))
     if su < 1024:
-        msg += f"\n<i>{desc}</i>"
+        msg += f"\n<b><blockquote>{desc}</b></blockquote>"
         if len(msg) > 1024:
             msg = msg[:1023]
     else:
-        msg += f"\n<b><a href='{url}'>..</a></b></i>"
+        msg += f"\n<b><blockquote><a href='{url}'>..</a></b></blockquote>"
 
     if len(msg) > 1024:
         msg = msg[:1023]
