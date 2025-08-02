@@ -82,7 +82,7 @@ async def send_manga_chapter(data, picturesList, user, sts, worker_id, webs, use
       manga_title = clean(data['manga_title'], flen)
 
     file_name = uts[str(user_id)].get('setting', {}).get('file_name', "Chapter {episode_number} {manga_title}")
-    caption = uts[str(user_id)].get('setting', {}).get('caption', "<blockquote>{file_name}</blockquote>")
+    caption = uts[str(user_id)].get('setting', {}).get('caption', "<blockquote><b>{file_name}</b></blockquote>")
 
     file_name = file_name.replace("{episode_number}", episode_number).replace("{manga_title}", manga_title).replace("{chapter_num}", episode_number) if file_name else f'{episode_number} - {manga_title}'
     
@@ -118,7 +118,7 @@ async def send_manga_chapter(data, picturesList, user, sts, worker_id, webs, use
     else:
       downloads_list = await asyncio.get_running_loop().run_in_executor(None, download_and_convert_images, picturesList, download_dir)
 
-    try: await sts.edit("<code>Downloading.....</code>")
+    try: await sts.edit("<pre>Dᴏᴡɴʟᴏᴀᴅɪɴɢ.....</pre>")
     except: pass
 
     if banner1:
@@ -131,7 +131,7 @@ async def send_manga_chapter(data, picturesList, user, sts, worker_id, webs, use
           else:
             downloads_list.insert(0, banner1)
         except:
-          await retry_on_flood(sts.edit)("<code>Error at Banner1</code>")
+          await retry_on_flood(sts.edit)("<pre>Eʀʀᴏʀ ᴀᴛ ʙᴀɴɴᴇʀ 1</pre>")
           await asyncio.sleep(10)
 
     if banner2:
@@ -140,7 +140,7 @@ async def send_manga_chapter(data, picturesList, user, sts, worker_id, webs, use
           banner2 = await Bot.download_media(banner2)
           downloads_list.append(banner2)
         except:
-          await retry_on_flood(sts.edit)("<code>Error at Banner2. Change Banner</code>")
+          await retry_on_flood(sts.edit)("<pre>Eʀʀᴏʀ ᴀᴛ ʙᴀɴɴᴇʀ 2. ᴄʜᴀɴɢᴇ ʙᴀɴɴᴇʀ</pre>")
           await asyncio.sleep(10)
 
     thumb = uts[str(user_id)].get('setting', {}).get('thumb', None)
@@ -167,7 +167,7 @@ async def send_manga_chapter(data, picturesList, user, sts, worker_id, webs, use
 
       test = await asyncio.get_running_loop().run_in_executor(None, convert_images_to_pdf, downloads_list, pdf_output_path, compressed_dir, password)
       if test:
-        await retry_on_flood(Bot.send_message)(user_id, f"Error at Making Pdf:- {data['url']}: <code>{test}</code>")
+        await retry_on_flood(Bot.send_message)(user_id, f"Eʀʀᴏʀ ᴀᴛ ᴍᴀᴋɪɴɢ ᴘᴅғ :- {data['url']}: <code>{test}</code>")
       else:
         media_docs.append(
           InputMediaDocument(pdf_output_path, caption=caption, thumb=thumb)
@@ -178,7 +178,7 @@ async def send_manga_chapter(data, picturesList, user, sts, worker_id, webs, use
       test = await asyncio.get_running_loop().run_in_executor(None, images_to_cbz, downloads_list, cbz_output_path)
       if test:
         await retry_on_flood(Bot.send_message)(
-          user_id, f"Error at Making Cbz:- {data['url']}: <code>{test}</code>")
+          user_id, f"Eʀʀᴏʀ ᴀᴛ ᴍᴀᴋɪɴɢ ᴄʙᴢ :- {data['url']}: <code>{test}</code>")
       else:
         media_docs.append(
           InputMediaDocument(cbz_output_path, caption=caption, thumb=thumb)
@@ -191,7 +191,7 @@ async def send_manga_chapter(data, picturesList, user, sts, worker_id, webs, use
         try: 
           await retry_on_flood(Bot.send_media_group)(CONSTANT_DUMP_CHANNEL, media_docs)
         except:
-          try: await sts.edit("<code>Add Bot At Dump Channel OR Provide Vaild Dump Channel</code>")
+          try: await sts.edit("<b><blockquote>Aᴅᴅ ʙᴏᴛ ᴀᴛ ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ ᴏʀ ᴘʀᴏᴠɪᴅᴇ ᴠᴀɪʟᴅ ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ</b></blockquote>")
           except: pass
           await asyncio.sleep(10)
 
@@ -199,17 +199,17 @@ async def send_manga_chapter(data, picturesList, user, sts, worker_id, webs, use
         try: 
           await retry_on_flood(Bot.send_media_group)(int(dump), media_docs)
         except:
-          try: await sts.edit("<code>Add Bot At Dump Channel OR Provide Vaild Dump Channel</code>")
+          try: await sts.edit("<b><blockquote>Aᴅᴅ ʙᴏᴛ ᴀᴛ ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ ᴏʀ ᴘʀᴏᴠɪᴅᴇ ᴠᴀɪʟᴅ ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ</b></blockquote>")
           except: pass
           await asyncio.sleep(10)
 
       if Vars.LOG_CHANNEL:
         if isinstance(data, list):
-          logs_msg = f"{caption}\n{data[0]['url']} : {data[-1]['url']}\n<code>User Id</code>: <code>{user_id}</code>[{user.from_user.mention() if user else 'None'}]\n<code>Time Taken: {time() - start_time}</code>\n<code>Worker: {worker_id}</code>"
+          logs_msg = f"{caption}\n{data[0]['url']} : {data[-1]['url']}\n<code>Usᴇʀ ɪᴅ</code> : <code>{user_id}</code>[{user.from_user.mention() if user else 'None'}]\n<code>Tɪᴍᴇ ᴛᴀᴋᴇɴ : {time() - start_time}</code>\n<code>Wᴏʀᴋᴇʀ : {worker_id}</code>"
         else:
-          logs_msg = f"{caption}\n{data['url']}\n<code>User Id</code>: <code>{user_id}</code>[{user.from_user.mention() if user else 'None'}]\n<code>Time Taken: {time() - start_time}</code>\n<code>Worker: {worker_id}</code>"
+          logs_msg = f"{caption}\n{data['url']}\n<code>Usᴇʀ ɪᴅ</code>: <code>{user_id}</code>[{user.from_user.mention() if user else 'None'}]\n<code>Tɪᴍᴇ ᴛᴀᴋᴇɴ : {time() - start_time}</code>\n<code>Wᴏʀᴋᴇʀ : {worker_id}</code>"
         if password:
-          logs_msg += f"\nPassword: <code>{password}</code>"
+          logs_msg += f"\nᴘᴀssᴡᴏʀᴅ: <code>{password}</code>"
         media_docs[-1].caption = logs_msg[:1024]
         try: await retry_on_flood(Bot.send_media_group)(Vars.LOG_CHANNEL, media_docs)
         except: pass
@@ -263,7 +263,7 @@ async def worker(worker_id: int = 1):
       else:
         logger.debug(f"Worker {worker_id} processing task {data['url']}")
 
-      try: await sts.edit("<code>Processing...</code>")
+      try: await sts.edit("<pre>Pʀᴏᴄᴇssɪɴɢ...</pre>")
       except: pass
 
       await send_manga_chapter(data, picturesList, user, sts, worker_id, webs=webs)
