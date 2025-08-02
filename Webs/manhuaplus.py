@@ -47,10 +47,10 @@ class ManhuaplusWebs(Scraper):
 
   async def get_chapters(self, data, page: int=1):
     results = data
-    results['msg'] = f"<b>{results['title']}</b>\n\n"
-    results['msg'] += f"<b>Url:</b> {results['url']}\n\n"
-    results['msg'] += f"<b>Lastest:</b> <code>{results['last']}</code>\n"
-    results['msg'] += f"<b>Description:</b> <code>{results['description']}</code>\n"
+    results['msg'] = f"<b><blockquote>◈ {results['title']}</b></blockquote>\n──────────────────────────\n"
+    results['msg'] += f"<b><blockquote>Sɪᴛᴇ ᴜʀʟ : {results['url']}</b></blockquote>\n──────────────────────────\n"
+    results['msg'] += f"<b><blockquote>Lᴀsᴛᴇsᴛ : {results['last']}<b><blockquote>\n──────────────────────────\n"
+    results['msg'] += f"<b><blockquote>Dᴇsᴄʀɪᴘᴛɪᴏɴ : {results['description']}<b><blockquote>\n"
     
     content = await self.get(results['url'], cs=True)
     bs = BeautifulSoup(content, "html.parser") if content else None
