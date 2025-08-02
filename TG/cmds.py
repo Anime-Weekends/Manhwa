@@ -105,41 +105,66 @@ async def start(client, message):
     )
 
 
+
+from pyrogram.errors import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, ContinuePropagation, StopPropagation
+
 @Bot.on_message(filters.private)
-async def on_private_message(client, message):
-  if client.SHORTENER:
-    if not await premium_user(message.from_user.id):
-      if not verify_token(message.from_user.id):
-        if not message.from_user.id in client.ADMINS:
-          return await get_token(message, message.from_user.id)
-  
-  channel = client.FORCE_SUB_CHANNEL
-  if not channel:
-    return message.continue_propagation()
+async def on_private_message(client: Client, message: Message):
+    if client.SHORTENER:
+        if not await premium_user(message.from_user.id):
+            if not verify_token(message.from_user.id):
+                if message.from_user.id not in client.ADMINS:
+                    return await get_token(message, message.from_user.id)
 
-  try:
-    if await client.get_chat_member(channel, message.from_user.id):
-      return message.continue_propagation()
+    try:
+        user_id = message.from_user.id
 
-  except pyrogram.errors.UsernameNotOccupied:
-    await message.reply("Channel does not exist, therefore bot will continue to operate normally")
-    return message.continue_propagation()
+        if AUTH_CHANNELS:
+            not_joined = []
+            for channel in AUTH_CHANNELS:
+                try:
+                    await client.get_chat_member(channel, user_id)
+                except UserNotParticipant:
+                    try:
+                        chat = await client.get_chat(channel)
+                        invite_link = chat.invite_link or await client.export_chat_invite_link(channel)
+                        not_joined.append((chat.title, invite_link))
+                    except Exception:
+                        continue
+                except (UsernameNotOccupied, ChatAdminRequired):
+                    continue
 
-  except pyrogram.errors.ChatAdminRequired:
-    await message.reply("Bot is not admin of the channel, therefore bot will continue to operate normally")
-    return message.continue_propagation()
+            if not_joined:
+                bot_info = await client.get_me()
+                buttons = []
 
-  except pyrogram.errors.UserNotParticipant:
-    await message.reply("<b>In order to use the bot you must join it's channel.</b>",
-            reply_markup=InlineKeyboardMarkup([
-              [InlineKeyboardButton(' Join Channel ! ', url=f't.me/{channel}')]]))
+                for i in range(0, len(not_joined), 2):
+                    row = []
+                    for j in range(2):
+                        if i + j < len(not_joined):
+                            title, link = not_joined[i + j]
+                            row.append(InlineKeyboardButton(f"{i + j + 1}. {title}", url=link))
+                    buttons.append(row)
 
-  except pyrogram.ContinuePropagation:
-    raise
-  except pyrogram.StopPropagation:
-    raise
-  except BaseException as e:
-    await message.reply(e)
+                buttons.append([
+                    InlineKeyboardButton("🔄 Try Again", url=f"https://t.me/{bot_info.username}?start=start")
+                ])
+
+                await message.reply(
+                    f"**🎭 {message.from_user.mention}, please join the required channel(s) to use this bot.**",
+                    reply_markup=InlineKeyboardMarkup(buttons)
+                )
+                return
+
+    except ContinuePropagation:
+        raise
+    except StopPropagation:
+        raise
+    except Exception as e:
+        await message.reply(f"⚠️ Error occurred:\n`{e}`")
+        return message.continue_propagation()
+
+    # All checks passed, continue
     return message.continue_propagation()
 
 @Bot.on_message(filters.command(["add", "add_premium"]) & filters.user(Bot.ADMINS))
