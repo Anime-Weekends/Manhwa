@@ -65,8 +65,7 @@ async def start(client, message):
         caption=(
             "<pre>Hᴇʏᴏ ᴄᴜᴛɪᴇ</pre>\n"
             "<b><blockquote>I'ᴍ ʏᴏᴜʀ ᴍᴀɴɢᴀ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ ʙᴏᴛ. Jᴜsᴛ sᴇɴᴅ ᴍᴇ ᴀ ᴛɪᴛʟᴇ, ᴀɴᴅ ɪ’ʟʟ ғɪɴᴅ ɪᴛ ғᴏʀ ʏᴏᴜ ɪɴ ᴄʟᴇᴀʀ, ʜɪɢʜ-Qᴜᴀʟɪᴛʏ ғᴏʀᴍᴀᴛ.</b></blockquote>\n"
-            f"<b><i>Ping:- {ping}</i></b>\n"
-            "<b><i>Check /help for more information.</i></b>"
+            f"<blockquote><b><a href='https://t.me/EmitingStars_Botz'>‣ Mᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : Eᴍɪᴛɪɴɢ Sᴛᴀʀs</a></b></blockquote>"
         ),
         reply_markup=InlineKeyboardMarkup([
             [
@@ -119,37 +118,37 @@ async def on_private_message(client, message):
 
 @Bot.on_message(filters.command(["add", "add_premium"]) & filters.user(Bot.ADMINS))
 async def add_handler(_, msg):
-  sts = await msg.reply_text("<code>Processing...</code>")
+  sts = await msg.reply_text("<pre>Pʀᴏᴄᴇssɪɴɢ...</pre>")
   try:
     user_id = int(msg.text.split(" ")[1])
     time_limit_days = int(msg.text.split(" ")[2])
     await add_premium(user_id, time_limit_days)
-    await retry_on_flood(sts.edit)("<code>User added to premium successfully.</code>")
+    await retry_on_flood(sts.edit)("<pre>Usᴇʀ ᴀᴅᴅᴇᴅ ᴛᴏ ᴘʀᴇᴍɪᴜᴍ sᴜᴄᴄᴇssғᴜʟʟʏ</pre>")
   except Exception as err:
     await retry_on_flood(sts.edit)(err)
 
 @Bot.on_message(filters.command(["del", "del_premium"]) & filters.user(Bot.ADMINS))
 async def del_handler(_, msg):
-  sts = await msg.reply_text("<code>Processing...</code>")
+  sts = await msg.reply_text("<pre>Pʀᴏᴄᴇssɪɴɢ...</pre>")
   try:
     user_id = int(msg.text.split(" ")[1])
     await remove_premium(user_id)
-    await retry_on_flood(sts.edit)("<code>User removed from premium successfully.</code>")
+    await retry_on_flood(sts.edit)("<pre>Usᴇʀ ʀᴇᴍᴏᴠᴇᴅ ғʀᴏᴍ ᴘʀᴇᴍɪᴜᴍ sᴜᴄᴄᴇssғᴜʟʟʏ.</pre>")
   except Exception as err:
     await retry_on_flood(sts.edit)(err)
 
 @Bot.on_message(filters.command(["del_expired", "del_expired_premium"]) & filters.user(Bot.ADMINS))
 async def del_expired_handler(_, msg):
-  sts = await msg.reply_text("<code>Processing...</code>")
+  sts = await msg.reply_text("<pre>Pʀᴏᴄᴇssɪɴɢ...</pre>")
   try:
     await remove_expired_users()
-    await retry_on_flood(sts.edit)("<code>Expired users removed successfully.</code>")
+    await retry_on_flood(sts.edit)("<pre>Exᴘɪʀᴇᴅ ᴜsᴇʀs ʀᴇᴍᴏᴠᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.</pre>")
   except Exception as err:
     await retry_on_flood(sts.edit)(err)
 
 @Bot.on_message(filters.command(["premium", "premium_users"]) & filters.user(Bot.ADMINS))
 async def premium_handler(_, msg):
-  sts = await msg.reply_text("<code>Processing...</code>")
+  sts = await msg.reply_text("<pre>Pʀᴏᴄᴇssɪɴɢ...</pre>")
   try:
     premium_users = acollection.find()
     txt = "<b>Premium Users:-</b>\n"
@@ -184,7 +183,7 @@ async def borad_cast_(_, message, pin=None):
     except:
       pass
     
-  sts = await message.reply_text("<code>Processing...</code>")
+  sts = await message.reply_text("<pre>Pʀᴏᴄᴇssɪɴɢ...</pre>")
   if message.reply_to_message:
     user_ids = get_users()
     msg = message.reply_to_message
@@ -193,7 +192,7 @@ async def borad_cast_(_, message, pin=None):
     blocked = 0
     deleted = 0
     unsuccessful = 0
-    await retry_on_flood(sts.edit)("<code>Broadcasting...</code>")
+    await retry_on_flood(sts.edit)("<pre>Bʀᴏᴀᴅᴄᴀsᴛɪɴɢ...</pre>")
     for user_id in user_ids:
       try:
         docs = await msg.copy(int(user_id))
@@ -234,13 +233,13 @@ async def borad_cast_(_, message, pin=None):
     
     await retry_on_flood(sts.edit)(status)
   else:
-    await retry_on_flood(sts.edit)("<code>Reply to a message to broadcast it.</code>")
+    await retry_on_flood(sts.edit)("<blockquote>Rᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ʙʀᴏᴀᴅᴄᴀsᴛ ɪᴛ.</blockquote>")
           
 
     
 @Bot.on_message(filters.command("restart") & filters.user(Bot.ADMINS))
 async def restart_(client, message):
-  msg = await message.reply_text("<code>Restarting.....</code>", quote=True)
+  msg = await message.reply_text("<pre>Rᴇsᴛᴀʀᴛɪɴɢ.....</pre>", quote=True)
   with open("restart_msg.txt", "w") as file:
     file.write(str(msg.chat.id) + ":" + str(msg.id))
     file.close()
@@ -632,6 +631,7 @@ async def help(client, message):
     await message.reply_photo(
         photo="https://telegra.ph/HgBotz-08-01-5",  # Replace with your actual image URL or local path
         caption=HELP_MSG,
+        message_effect_id=5104841245755180586, 
         reply_markup=buttons
     )
 
