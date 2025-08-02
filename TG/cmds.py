@@ -106,7 +106,7 @@ async def start(client, message):
 
 
 
-from pyrogram.errors import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, ContinuePropagation, StopPropagation
+from pyrogram.errors import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired
 
 @Bot.on_message(filters.private)
 async def on_private_message(client: Client, message: Message):
