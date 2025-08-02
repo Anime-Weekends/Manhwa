@@ -30,47 +30,68 @@ HELP_MSG = """<blockquote><b>›› Tᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀ ᴍᴀɴɢ�
 <blockquote>Uᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ : @EmitingStars_Botz</b></blockquote>"""
 
 
-@Bot.on_message(filters.command("start"))
+@bot.on_message(filters.command("start"))
 async def start(client, message):
-  if Vars.IS_PRIVATE:
-    if message.chat.id not in Vars.ADMINS:
-      return await message.reply("<code>You cannot use me baby </code>")
+    user_id = message.from_user.id
 
-  if len(message.command) > 1:
-    if message.command[1] != "start":
-      user_id = message.from_user.id
-      token = message.command[1]
-      if verify_token_memory(user_id, token):
-        sts = await message.reply("Token verified! You can now use the bot.")
-        save_token(user_id, token)
-        global_tokens.pop(user_id, None)
-        await asyncio.sleep(8)
-        await sts.delete()
-      else:
-        sts = await message.reply("Invalid or expired token. Requesting a new one...")
-        await get_token(message, user_id)
-        await sts.delete()
-      return
+    # Private access restriction
+    if Vars.IS_PRIVATE:
+        if user_id not in Vars.ADMINS:
+            return await message.reply("<code>You cannot use me baby </code>")
 
-  photo = random.choice(Vars.PICS)
-  ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
-  await message.reply_photo(
-    photo,
-    caption=(
-      "<b><i>Welcome to the best manga pdf bot in telegram!!</i></b>\n"
-      "\n"
-      "<b><i>How to use? Just type the name of some manga you want to keep up to date.</i></b>\n"
-      "\n"
-      "<b><i>For example:</i></b>\n"
-      "<i><code>One Piece</i></code>\n"
-      "\n"
-      f"<b><i>Ping:- {ping}</i></b>"
-      "\n"
-      "<b><i>Check /help for more information.</i></b>"),
-    reply_markup=InlineKeyboardMarkup([[        
-                                         InlineKeyboardButton('* Repo *', url = "https://github.com/Dra-Sama/mangabot"),
-                                         InlineKeyboardButton("* Support *", url = "https://t.me/WizardBotHelper")
-                                     ]]))
+    # Token verification logic
+    if len(message.command) > 1:
+        if message.command[1] != "start":
+            token = message.command[1]
+            if verify_token_memory(user_id, token):
+                sts = await message.reply("Token verified! You can now use the bot.")
+                save_token(user_id, token)
+                global_tokens.pop(user_id, None)
+                await asyncio.sleep(4)
+                return await sts.delete()
+            else:
+                sts = await message.reply("Invalid or expired token. Requesting a new one...")
+                await get_token(message, user_id)
+                return await sts.delete()
+
+    # Flirty welcome + typing + sticker
+    await client.send_chat_action(message.chat.id, ChatAction.TYPING)
+    welcome = await message.reply("<i><blockquote>Wᴇʟᴄᴏᴍᴇ, ʙᴀʙʏ… ɪ’ᴠᴇ ʙᴇᴇɴ ᴄʀᴀᴠɪɴɢ ʏᴏᴜʀ ᴘʀᴇsᴇɴᴄᴇ.</blockquote></i>")
+    await asyncio.sleep(1)
+    await welcome.edit("<b><i><pre>Sᴛᴀʀᴛɪɴɢ...</pre></i></b>")
+    await asyncio.sleep(1)
+    await welcome.delete()
+
+    await client.send_chat_action(message.chat.id, ChatAction.CHOOSE_STICKER)
+    await message.reply_sticker("CAACAgUAAxkBAAEOXBhoCoKZ76jevKX-Vc5v5SZhCeQAAXMAAh4KAALJrhlVZygbxFWWTLw2BA")
+
+    # Inline buttons
+    keyboard = InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("⭐ Repo", url="https://github.com/Dra-Sama/mangabot"),
+            InlineKeyboardButton("🌸 Support", url="https://t.me/WizardBotHelper")
+        ],
+        [
+            InlineKeyboardButton("✨ About", callback_data="about"),
+            InlineKeyboardButton("❌ Close", callback_data="close_msg")
+        ]
+    ])
+
+    # Image and final welcome
+    photo = random.choice(Vars.PICS)
+    ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
+
+    await message.reply_photo(
+        photo=photo,
+        caption=(
+            "<b><i>Welcome to the best manga PDF bot on Telegram!!</i></b>\n\n"
+            "<b><i>How to use?</i></b> Just type the name of a manga you want.\n\n"
+            "<b><i>Example:</i></b> <code>One Piece</code>\n\n"
+            f"<b><i>Ping:</i></b> <code>{ping}</code>\n"
+            "<b><i>Use /help for more info.</i></b>"
+        ),
+        reply_markup=keyboard
+    )
 
 @Bot.on_message(filters.private)
 async def on_private_message(client, message):
