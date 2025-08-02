@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram.errors import FloodWait
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 
 from .storage import web_data, split_list, plugins_list, users_txt, retry_on_flood, queue, asyncio
 
@@ -30,68 +30,86 @@ HELP_MSG = """<blockquote><b>›› Tᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀ ᴍᴀɴɢ�
 <blockquote>Uᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ : @EmitingStars_Botz</b></blockquote>"""
 
 
-@bot.on_message(filters.command("start"))
+
+@Bot.on_message(filters.command("start"))
 async def start(client, message):
-    user_id = message.from_user.id
-
-    # Private access restriction
     if Vars.IS_PRIVATE:
-        if user_id not in Vars.ADMINS:
-            return await message.reply("<code>You cannot use me baby </code>")
+        if message.chat.id not in Vars.ADMINS:
+            return await message.reply("<code>You cannot use me baby</code>")
 
-    # Token verification logic
     if len(message.command) > 1:
         if message.command[1] != "start":
+            user_id = message.from_user.id
             token = message.command[1]
             if verify_token_memory(user_id, token):
                 sts = await message.reply("Token verified! You can now use the bot.")
                 save_token(user_id, token)
                 global_tokens.pop(user_id, None)
-                await asyncio.sleep(4)
-                return await sts.delete()
+                await asyncio.sleep(8)
+                await sts.delete()
             else:
                 sts = await message.reply("Invalid or expired token. Requesting a new one...")
                 await get_token(message, user_id)
-                return await sts.delete()
+                await sts.delete()
+            return
 
-    # Flirty welcome + typing + sticker
-    await client.send_chat_action(message.chat.id, ChatAction.TYPING)
-    welcome = await message.reply("<i><blockquote>Wᴇʟᴄᴏᴍᴇ, ʙᴀʙʏ… ɪ’ᴠᴇ ʙᴇᴇɴ ᴄʀᴀᴠɪɴɢ ʏᴏᴜʀ ᴘʀᴇsᴇɴᴄᴇ.</blockquote></i>")
-    await asyncio.sleep(1)
-    await welcome.edit("<b><i><pre>Sᴛᴀʀᴛɪɴɢ...</pre></i></b>")
-    await asyncio.sleep(1)
-    await welcome.delete()
-
-    await client.send_chat_action(message.chat.id, ChatAction.CHOOSE_STICKER)
-    await message.reply_sticker("CAACAgUAAxkBAAEOXBhoCoKZ76jevKX-Vc5v5SZhCeQAAXMAAh4KAALJrhlVZygbxFWWTLw2BA")
-
-    # Inline buttons
-    keyboard = InlineKeyboardMarkup([
-        [
-            InlineKeyboardButton("⭐ Repo", url="https://github.com/Dra-Sama/mangabot"),
-            InlineKeyboardButton("🌸 Support", url="https://t.me/WizardBotHelper")
-        ],
-        [
-            InlineKeyboardButton("✨ About", callback_data="about"),
-            InlineKeyboardButton("❌ Close", callback_data="close_msg")
-        ]
-    ])
-
-    # Image and final welcome
-    photo = random.choice(Vars.PICS)
     ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
-
     await message.reply_photo(
-        photo=photo,
+        photo="https://i.ibb.co/dJW7wm3X/photo-2025-07-31-20-51-24-7533357364280295448.jpg",  # <-- Your fixed image path or URL here
         caption=(
             "<b><i>Welcome to the best manga PDF bot on Telegram!!</i></b>\n\n"
-            "<b><i>How to use?</i></b> Just type the name of a manga you want.\n\n"
-            "<b><i>Example:</i></b> <code>One Piece</code>\n\n"
-            f"<b><i>Ping:</i></b> <code>{ping}</code>\n"
-            "<b><i>Use /help for more info.</i></b>"
+            "<b><i>How to use? Just type the name of some manga you want to keep up to date.</i></b>\n\n"
+            "<b><i>For example:</i></b>\n"
+            "<code>One Piece</code>\n\n"
+            f"<b><i>Ping:- {ping}</i></b>\n"
+            "<b><i>Check /help for more information.</i></b>"
         ),
-        reply_markup=keyboard
+        reply_markup=InlineKeyboardMarkup([
+            [InlineKeyboardButton("1", callback_data="btn_1"), InlineKeyboardButton("2", callback_data="btn_2")],
+            [InlineKeyboardButton("3", callback_data="btn_3")],
+            [InlineKeyboardButton("4 - About", callback_data="btn_about"),
+             InlineKeyboardButton("5 - Close", callback_data="btn_close")]
+        ])
     )
+
+
+@Bot.on_callback_query()
+async def button_callback(client: Client, callback_query: CallbackQuery):
+    data = callback_query.data
+
+    if data == "btn_about":
+        await callback_query.message.edit_caption(
+            caption="<b>ℹ️ This bot lets you search and get the latest manga in PDF format easily.</b>",
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("🔙 Back", callback_data="btn_back"),
+                 InlineKeyboardButton("🌐 Visit Repo", url="https://github.com/Dra-Sama/mangabot")]
+            ])
+        )
+
+    elif data == "btn_back":
+        ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
+        await callback_query.message.edit_caption(
+            caption=(
+                "<b><i>Welcome to the best manga PDF bot on Telegram!!</i></b>\n\n"
+                "<b><i>How to use? Just type the name of some manga you want to keep up to date.</i></b>\n\n"
+                "<b><i>For example:</i></b>\n"
+                "<code>One Piece</code>\n\n"
+                f"<b><i>Ping:- {ping}</i></b>\n"
+                "<b><i>Check /help for more information.</i></b>"
+            ),
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("1", callback_data="btn_1"), InlineKeyboardButton("2", callback_data="btn_2")],
+                [InlineKeyboardButton("3", callback_data="btn_3")],
+                [InlineKeyboardButton("4 - About", callback_data="btn_about"),
+                 InlineKeyboardButton("5 - Close", callback_data="btn_close")]
+            ])
+        )
+
+    elif data == "btn_close":
+        await callback_query.message.delete()
+
+    else:
+        await callback_query.answer("This button is not yet configured.", show_alert=True)
 
 @Bot.on_message(filters.private)
 async def on_private_message(client, message):
