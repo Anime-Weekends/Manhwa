@@ -124,3 +124,7 @@ def delete_sub(user_id, manga_url: str):
 
     sync()
     sync(Vars.DB_NAME, 'uts')
+
+#──────────────────────
+#────────ᴊᴇғғʏ ᴅᴇᴠ─────────
+#──────────────────────
