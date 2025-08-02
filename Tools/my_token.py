@@ -68,24 +68,28 @@ def verify_token(user_id):
             return True
     return False
 
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+
 async def get_token(message, user_id):
     new_token = generate_token()
-    expiration_time = time.time() + (dr * 3600)  # Convert hours to seconds
+    expiration_time = time.time() + (dr * 3600)  # Token valid for 'dr' hours
     global_tokens[user_id] = {"token": new_token, "expires_at": expiration_time}
-    
+
     token_link = f"https://telegram.me/{Bot.username}?start={new_token}"
     short_token_link = get_short(token_link)
 
-    button = InlineKeyboardButton("Vᴇʀɪғʏ ʜᴇʀᴇ", url=short_token_link)
+    # Button layout: 1 | 2 and 3 | 4
+    button1 = InlineKeyboardButton("Vᴇʀɪғʏ ʜᴇʀᴇ", url=short_token_link)
     button2 = InlineKeyboardButton("Tᴜᴛᴏʀɪᴀʟ", url="https://t.me/+KymUiadSyutiZjM1")
+    button3 = InlineKeyboardButton("Pʀᴇᴍɪᴜᴍ", callback_data="premuim")
+    button4 = InlineKeyboardButton("Cʟᴏsᴇ", callback_data="close")
+
     keyboard = InlineKeyboardMarkup([
-        [button],
-        [button2],
-        [InlineKeyboardButton("Pʀᴇᴍɪᴜᴍ", callback_data="premuim")],
-        [InlineKeyboardButton("Cʟᴏsᴇ", callback_data="close")],
+        [button1, button2],
+        [button3, button4]
     ])
 
-    photo = "https://i.ibb.co/PvpdSpV7/photo-2025-07-21-17-44-51-7529592614991953944.jpg"  # Replace with your image URL
+    photo = "https://i.ibb.co/PvpdSpV7/photo-2025-07-21-17-44-51-7529592614991953944.jpg"
 
     await message.reply_photo(
         photo=photo,
@@ -96,7 +100,8 @@ async def get_token(message, user_id):
             "<b><blockquote>Tʜɪs ɪs ᴀɴ ᴀᴅs ᴛᴏᴋᴇɴ. ᴘᴀssɪɴɢ ᴏɴᴇ ᴀᴅ ᴀʟʟᴏᴡs ʏᴏᴜ ᴛᴏ ᴜsᴇ ᴛʜᴇ ʙᴏᴛ ғᴏʀ 1 ᴅᴀʏ</b></blockquote>\n"
             "<b><blockquote><spoiler>Oᴡᴇʀᴇᴅ ʙʏ : @EmitingStars_Botz</spoiler></b></blockquote>"
         ),
-        reply_markup=keyboard
+        reply_markup=keyboard,
+        message_effect_id=5104841245755180586  # Added as requested
     )
 
 #f
