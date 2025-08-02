@@ -40,8 +40,7 @@ class Vars:
     DURATION = int(os.environ.get("DURATION", "20"))  # hours
 
     PICS = (
-        "https://i.ibb.co/vvCVDWVw/photo-2025-08-02-05-03-11-7533849357079019548.jpg",
-        "https://i.ibb.co/pCPzSCc/photo-2025-08-02-05-03-12-7533849369963921436.jpg",
+        "https://telegra.ph/HgBotz-08-02",
     )
 
 
@@ -97,18 +96,14 @@ class ManhwaBot(Client, Vars):
 
         # Banner log
         self.logger.info(r"""
- ___       __   ___  ________  ________  ________  ________          ________  ________  _________  ________      
-|\  \     |\  \|\  \|\_____  \|\   __  \|\   __  \|\   ___ \        |\   __  \|\   __  \|\___   ___\\   ____\     
-\ \  \    \ \  \ \  \\|___/  /\ \  \|\  \ \  \|\  \ \  \_|\ \       \ \  \|\ /\ \  \|\  \|___ \  \_\ \  \___|_    
- \ \  \  __\ \  \ \  \   /  / /\ \   __  \ \   _  _\ \  \ \\ \       \ \   __  \ \  \\\  \   \ \  \ \ \_____  \   
-  \ \  \|\__\_\  \ \  \ /  /_/__\ \  \ \  \ \  \\  \\ \  \_\\ \       \ \  \|\  \ \  \\\  \   \ \  \ \|____|\  \  
-   \ \____________\ \__\\________\ \__\ \__\ \__\\ _\\ \_______\       \ \_______\ \_______\   \ \__\  ____\_\  \ 
-    \|____________|\|__|\|_______|\|__|\|__|\|__|\|__|\|_______|        \|_______|\|_______|    \|__| |\_________\
-                                                                                                  \|_________|
+ .    ▼￣＞-―-＜￣▼
+　　Ｙ　            Ｙ
+  /\   / 　 ●    o  ●）
+＼  ｜　 つ　    ヽ
         """)
 
         self.username = usr_bot_me.username
-        self.logger.info("Made by https://t.me/Wizard_Bots")
+        self.logger.info("Made by https://t.me/EmitingStars_Botz")
         self.logger.info(f"Manhwa Bot Started as {usr_bot_me.first_name} | @{usr_bot_me.username}")
 
         # Launch Flask app if enabled
@@ -116,15 +111,15 @@ class ManhwaBot(Client, Vars):
             await run_flask()
 
         # Send online status update
-        msg_text = """<blockquote><b>🔥 SYSTEMS ONLINE. READY TO RUMBLE. 🔥
-Sleep mode deactivated. Neural cores at 100%. Feed me tasks, and watch magic happen. Let’s. Get. Dangerous.</b></blockquote>"""
+        msg_text = """<blockquote><b>Sʏsᴛᴇᴍs ᴏɴʟɪɴᴇ. ʀᴇᴀᴅʏ ᴛᴏ ʀᴜᴍʙʟᴇ.
+sʟᴇᴇᴘ ᴍᴏᴅᴇ ᴅᴇᴀᴄᴛɪᴠᴀᴛᴇᴅ. ɴᴇᴜʀᴀʟ ᴄᴏʀᴇs ᴀᴛ 100%. ғᴇᴇᴅ ᴍᴇ ᴛᴀsᴋs, ᴀɴᴅ ᴡᴀᴛᴄʜ ᴍᴀɢɪᴄ ʜᴀᴘᴘᴇɴ. ʟᴇᴛ’s ɢᴇᴛ ᴅᴀɴɢᴇʀᴏᴜs.</b></blockquote>"""
 
         photo = random.choice(self.PICS)
 
         buttons = [
             [
-                InlineKeyboardButton("⭐ Start Now", url=f"https://t.me/{usr_bot_me.username}?start=start"),
-                InlineKeyboardButton("📢 Channel", url="https://t.me/Wizard_Bots"),
+                InlineKeyboardButton("Sᴛᴀʀᴛ ɴᴏᴡ", url=f"https://t.me/{usr_bot_me.username}?start=start"),
+                InlineKeyboardButton("Cʜᴀɴɴᴇʟ", url="https://t.me/EmitingStars_Botz"),
             ]
         ]
 
