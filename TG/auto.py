@@ -87,3 +87,7 @@ async def main_updates():
           continue
     finally:
       await asyncio.sleep(min * 60)
+
+#──────────────────────
+#────────ᴊᴇғғʏ ᴅᴇᴠ─────────
+#──────────────────────
