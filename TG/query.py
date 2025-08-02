@@ -24,21 +24,21 @@ async def close_handler(_, query):
 async def premuim_handler(_, query):
   """This Is Premuim Handler Of Callback Data"""
   button = query.message.reply_markup.inline_keyboard
-  text = f"""
-<b><i>Premium Price
-
-Pricing Rates
-  7 Days - 30 inr / 0.35 USD / NRS 40
-  1 Month - 90 inr / 1.05 USD / NRS 140
-  3 Months - 260 inr / 2.94 USD / NRS 350
-  6 Months - 500 inr / 6.33 USD / NRS 700
-  9 Months - 780 inr / 9.14 USD / NRS 1100
-  12 Months - 1000 inr / 11.8 USD / NRS 1400
-
-Want To Buy ?!
-  Contact or DM - @Shanks_Kun
-
-We Have Limited Seats For Premium Users</i></b>"""
+  text = f"""<b>
+────────────────────────────
+<blockquote>◈ Pʀɪᴄɪɴɢ ʀᴀᴛᴇs</blockquote>
+────────────────────────────
+›› 7 ᴅᴀʏs - 30 ɪɴʀ | 0.35 ᴜsᴅ
+›› 1 ᴍᴏɴᴛʜ - 90 ɪɴʀ | 1.05 ᴜsᴅ
+›› 3 ᴍᴏɴᴛʜs - 260 ɪɴʀ | 2.94 ᴜsᴅ
+›› 6 ᴍᴏɴᴛʜs - 500 ɪɴʀ | 6.33 ᴜsᴅ 
+›› 9 ᴍᴏɴᴛʜs - 780 ɪɴʀ | 9.14 ᴜsᴅ
+›› 12 ᴍᴏɴᴛʜs - 1000 ɪɴʀ | 11.8 ᴜsᴅ
+────────────────────────────
+<blockquote>◈ Wᴀɴᴛ ᴛᴏ ʙᴜʏ ? !
+- Cᴏɴᴛᴀᴄᴛ ᴏʀ ᴅᴍ - @RexySama</blockquote>
+────────────────────────────
+<blockquote>◈ Wᴇ ʜᴀᴠᴇ ʟɪᴍɪᴛᴇᴅ sᴇᴀᴛs ғᴏʀ ᴘʀᴇᴍɪᴜᴍ ᴜsᴇʀs</blockquote></b>"""
   del button[-2]
   await retry_on_flood(query.edit_message_text)(text, reply_markup=InlineKeyboardMarkup(button))
 
