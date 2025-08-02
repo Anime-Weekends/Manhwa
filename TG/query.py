@@ -1863,3 +1863,6 @@ async def regex_handler(_, query):
       await retry_on_flood(query.answer)("Yᴏᴜ ʜᴀs ɴᴏᴛ sᴇᴛ ɪᴛ !", show_alert=True)
 
 
+#──────────────────────
+#────────ᴊᴇғғʏ ᴅᴇᴠ─────────
+#──────────────────────
