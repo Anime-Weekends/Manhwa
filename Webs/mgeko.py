@@ -53,15 +53,15 @@ class MgekoWebs(Scraper):
     bs = BeautifulSoup(content, "html.parser") if content else None
     if bs:
       con = bs.find(class_="categories")
-      msg = f"<b>{results['title']}</b>\n\n"
-      msg += f"<b>Url:</b> {results['url']}\n\n"
+      msg = f"<b><blockquote>◈ {results['title']}</b></blockquote>\n──────────────────────────\n"
+      msg += f"<b><blockquote>›› Sɪᴛᴇ ᴜʀʟ :{results['url']}</b></blockquote>\n──────────────────────────\n"
       
       if con:
         gen = ' '.join([con.text.strip() for con in con.find_all("a")])
-        msg += f"<b>Genres:</b> <code>{gen}</code>\n"
+        msg += f"<b><blockquote>›› Gᴇɴʀᴇs : {gen}</b></blockquote>\n──────────────────────────\n"
         
         des = bs.find("p", class_="description").text.strip() if bs.find("p", class_="description") else "N/A"
-        msg += f"<b>Description:</b> <code>{des}</code>"
+        msg += f"<b><blockquote expandable>›› Dᴇsᴄʀɪᴘᴛɪᴏɴ : {des}</b></blockquote>"
 
       results['msg'] = msg
     
