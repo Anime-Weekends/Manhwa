@@ -55,9 +55,9 @@ class AsuraScansWebs(Scraper):
       des = des.text.strip() if des else "N/A"
       
       gen = " ".join([g.text.strip() for g in bs.find_all("button", class_="text-white hover:text-themecolor text-sm cursor-pointer rounded-[3px] px-3 py-1 bg-[#343434]")])
-      results['msg'] = f"<b>{results['title']}</b>\n\n"
-      results['msg'] += f"<b>Geners: <blockquote expandable><code>{gen}</code><blockquote>\n\n"
-      results['msg'] += f"<b>Description</b>: <blockquote expandable><code>{des}</code><blockquote>\n"
+      results['msg'] = f"<b><blockquote>◈ {results['title']}</b></blockquote>\n──────────────────────────\n"
+      results['msg'] += f"<b><blockquote expandable>›› Gᴇɴʀᴇs: {gen}</b></blockquote>\n──────────────────────────\n"
+      results['msg'] += f"<b><blockquote expandable>›› Dᴇsᴄʀɪᴘᴛɪᴏɴ : {des}</b></blockquote>\n"
       
       container = bs.find(class_="pl-4 pr-2 pb-4 overflow-y-auto scrollbar-thumb-themecolor scrollbar-track-transparent scrollbar-thin mr-3 max-h-[20rem] space-y-2.5")
       results['chapters'] = container
