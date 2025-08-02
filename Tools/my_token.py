@@ -102,4 +102,6 @@ async def get_token(message, user_id):
         message_effect_id=5104841245755180586  # Added as requested
     )
 
-#f
+#──────────────────────
+#────────ᴊᴇғғʏ ᴅᴇᴠ─────────
+#──────────────────────
