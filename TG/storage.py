@@ -364,3 +364,7 @@ def get_episode_number(text):
     matchX = re.search(patternX, text)
     if matchX:
         return str(matchX.group(1))
+
+#──────────────────────
+#────────ᴊᴇғғʏ ᴅᴇᴠ─────────
+#──────────────────────
