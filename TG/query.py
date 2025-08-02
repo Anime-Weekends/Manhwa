@@ -518,7 +518,7 @@ async def bk_handler(client, query):
                 [InlineKeyboardButton(result['title'], callback_data=c)])
 
           button.append(
-              [InlineKeyboardButton("🪬 Back 🪬", callback_data="bk.p")])
+              [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="bk.p")])
           await retry_on_flood(query.edit_message_text
                                )("<b>Select Manga</b>",
                                  reply_markup=InlineKeyboardMarkup(button))
@@ -793,7 +793,7 @@ async def file_name_handler(_, query):
       await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
       await call.delete()
       
-      try: await query.answer("Sucessfully Added")
+      try: await query.answer("Sᴜᴄᴇssғᴜʟʟʏ ᴀᴅᴅᴇᴅ")
       except: pass
     except asyncio.TimeoutError:
       txt = users_txt.format(
@@ -840,7 +840,7 @@ async def file_name_handler(_, query):
       try: await query.answer("Sucessfully Deleted")
       except: pass
     else:
-      await retry_on_flood(query.answer)("📐 𝒀𝒐𝒖 𝒉𝒂𝒔 𝒏𝒐𝒕 𝑺𝒆𝒕 𝑰𝒕 ! 📐", show_alert=True)
+      await retry_on_flood(query.answer)("Yᴏᴜ ʜᴀs ɴᴏᴛ sᴇᴛ ɪᴛ !", show_alert=True)
 
   elif query.data == "ufn_len_change":
     try: await query.edit_message_media(InputMediaPhoto(random.choice(Vars.PICS)))
@@ -857,7 +857,7 @@ async def file_name_handler(_, query):
         file_name_len = int(call.text)
         
         await call.delete()
-        await retry_on_flood(query.answer)("🤖 Sucessfully Added 🤖")
+        await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴀᴅᴅᴇᴅ")
         
       except ValueError:
         await retry_on_flood(query.answer)("Tʜɪs ɪs ɴᴏᴛ ᴀ ᴠᴀʟɪᴅ ɪɴᴛᴇɢᴇʀ", show_alert=True)
@@ -909,9 +909,9 @@ async def file_name_handler(_, query):
         except: pass
       
       await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
-      await retry_on_flood(query.answer)("🤖 Sucessfully Deleted 🤖")
+      await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ")
     else:
-      await retry_on_flood(query.answer)("📐 𝒀𝒐𝒖 𝒉𝒂𝒔 𝒏𝒐𝒕 𝑺𝒆𝒕 𝑰𝒕 ! 📐", show_alert=True)
+      await retry_on_flood(query.answer)("Yᴏᴜ ʜᴀs ɴᴏᴛ sᴇᴛ ɪᴛ !", show_alert=True)
 
   try: await query.answer()
   except: pass
@@ -971,10 +971,10 @@ async def caption_handler(_, query):
       await call.delete()
 
     except asyncio.TimeoutError:
-      await retry_on_flood(query.answer)("📐 ᴛɪᴍᴇᴏᴜᴛ 📐")
+      await retry_on_flood(query.answer)("Tɪᴍᴇᴏᴜᴛ")
 
     except Exception as err:
-      await retry_on_flood(query.answer)(f"📐 {err} 📐", show_alert=True)
+      await retry_on_flood(query.answer)(f"{err}", show_alert=True)
     
     txt = users_txt.format(
       id=user_id,
@@ -1021,10 +1021,10 @@ async def caption_handler(_, query):
         except: pass
 
       await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
-      await retry_on_flood(query.answer)("👻 Sucessfully Deleted 👻")
+      await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ")
       
     else:
-      await retry_on_flood(query.answer)("📐 𝒀𝒐𝒖 𝒉𝒂𝒔 𝒏𝒐𝒕 𝑺𝒆𝒕 𝑰𝒕 ! 📐", show_alert=True)
+      await retry_on_flood(query.answer)("Yᴏᴜ ʜᴀs ɴᴏᴛ sᴇᴛ ɪᴛ !", show_alert=True)
 
   try: await query.answer()
   except: pass
@@ -1114,7 +1114,7 @@ async def thumb_handler(_, query):
     except: pass
     
     await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
-    await retry_on_flood(query.answer)("🎮 Sucessfully Added 🎮")
+    await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴀᴅᴅᴇᴅ")
     
   elif query.data == "uth_change":
     await retry_on_flood(query.edit_message_caption)("<b>📐 Send Thumbnail 📐 \n<u>Note:</u> <blockquote>You Can Send Links or Images Docs.. </blockquote></b>")
@@ -1188,7 +1188,7 @@ async def thumb_handler(_, query):
       except: pass
       await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
     else:
-      await retry_on_flood(query.answer)("📐 𝒀𝒐𝒖 𝒉𝒂𝒔 𝒏𝒐𝒕 𝑺𝒆𝒕 𝑰𝒕 ! 📐", show_alert=True)
+      await retry_on_flood(query.answer)("Yᴏᴜ ʜᴀs ɴᴏᴛ sᴇᴛ ɪᴛ !", show_alert=True)
 
   try: await query.answer()
   except: pass
@@ -1324,9 +1324,9 @@ async def banner_handler(_, query):
           except: pass
 
         await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
-        await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ ")
+        await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ")
     else:
-      await retry_on_flood(query.answer)("📐 𝒀𝒐𝒖 𝒉𝒂𝒔 𝒏𝒐𝒕 𝑺𝒆𝒕 𝑰𝒕 ! 📐", show_alert=True)
+      await retry_on_flood(query.answer)("Yᴏᴜ ʜᴀs ɴᴏᴛ sᴇᴛ ɪᴛ !", show_alert=True)
 
   elif query.data == "ubn_delete2":
     if banner2:
@@ -1354,7 +1354,7 @@ async def banner_handler(_, query):
       await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
       await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ")
     else:
-      await retry_on_flood(query.answer)("📐 𝒀𝒐𝒖 𝒉𝒂𝒔 𝒏𝒐𝒕 𝑺𝒆𝒕 𝑰𝒕 ! 📐", show_alert=True)
+      await retry_on_flood(query.answer)("Yᴏᴜ ʜᴀs ɴᴏᴛ sᴇᴛ ɪᴛ !", show_alert=True)
 
   try: await query.answer()
   except: pass
@@ -1422,11 +1422,11 @@ async def dump_handler(_, query):
 
       await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
       await call.delete()
-      await retry_on_flood(query.answer)("🎬 Sucessfully Added 🎬")
+      await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴀᴅᴅᴇᴅ")
     except asyncio.TimeoutError:
-      await retry_on_flood(query.answer)("📐 ᴛɪᴍᴇᴏᴜᴛ 📐")
+      await retry_on_flood(query.answer)("Tɪᴍᴇᴏᴜᴛ")
     except Exception as err:
-      await retry_on_flood(query.answer)(f"📐 {err} 📐", show_alert=True)
+      await retry_on_flood(query.answer)(f"{err}", show_alert=True)
   elif query.data == "udc_delete":
     if dump:
       uts[user_id]['setting']["dump"] = None
@@ -1451,9 +1451,9 @@ async def dump_handler(_, query):
         except: pass
       
       await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
-      await retry_on_flood(query.answer)("🎲 Sucessfully Deleted 🎲")
+      await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ")
     else:
-      await retry_on_flood(query.answer)("📐 𝒀𝒐𝒖 𝒉𝒂𝒔 𝒏𝒐𝒕 𝑺𝒆𝒕 𝑰𝒕 ! 📐", show_alert=True)
+      await retry_on_flood(query.answer)("Yᴏᴜ ʜᴀs ɴᴏᴛ sᴇᴛ ɪᴛ !", show_alert=True)
 
   try: await query.answer()
   except: pass
@@ -1499,7 +1499,7 @@ async def type_handler(_, query):
   else:
     button[0].append(InlineKeyboardButton("❗CBZ ❗", callback_data="u_file_type_cbz"))
 
-  button.append([InlineKeyboardButton("🔙 ʙᴀᴄᴋ 🔙", callback_data="mus")])
+  button.append([InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")])
 
   if query.data == "u_file_type":
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
@@ -1600,8 +1600,8 @@ async def megre_handler(_, query):
   if thumb:
     thumb = "True" if not thumb.startswith("http") else thumb
   button = [
-    [InlineKeyboardButton("📐 sᴇᴛ/ᴄʜᴀɴɢᴇ 📐", callback_data="umegre_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="umegre_delete")],
-    [InlineKeyboardButton("🔙 ʙᴀᴄᴋ 🔙", callback_data="mus")]
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="umegre_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="umegre_delete")],
+    [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")]
   ]
   if query.data == "umegre":
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
@@ -1622,11 +1622,11 @@ async def megre_handler(_, query):
       megre = call.text 
       await call.delete()
     except ValueError:
-      await retry_on_flood(query.answer)("📐 ᴛʜɪs ɪs ɴᴏᴛ ᴀ ᴠᴀʟɪᴅ ɪɴᴛᴇɢᴇʀ 📐", show_alert=True)
+      await retry_on_flood(query.answer)("Tʜɪs ɪs ɴᴏᴛ ᴀ ᴠᴀʟɪᴅ ɪɴᴛᴇɢᴇʀ", show_alert=True)
     except asyncio.TimeoutError:
-      await retry_on_flood(query.answer)("📐 ᴛɪᴍᴇᴏᴜᴛ 📐")
+      await retry_on_flood(query.answer)("Tɪᴍᴇᴏᴜᴛ")
     except Exception as err:
-      await retry_on_flood(query.answer)(f"📐 {err} 📐", show_alert=True)
+      await retry_on_flood(query.answer)(f"{err}", show_alert=True)
     
     txt = users_txt.format(
       id=user_id,
@@ -1647,7 +1647,7 @@ async def megre_handler(_, query):
       except: pass
 
     await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
-    await retry_on_flood(query.answer)("🎬 Sucessfully Added 🎬")
+    await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴀᴅᴅᴇᴅ")
 
   elif query.data == "umegre_delete":
     if megre:
@@ -1674,9 +1674,9 @@ async def megre_handler(_, query):
         except: pass
 
       await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
-      await retry_on_flood(query.answer)("🎬 Sucessfully Deleted 🎬")
+      await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ")
     else:
-      await retry_on_flood(query.answer)("📐 𝒀𝒐𝒖 𝒉𝒂𝒔 𝒏𝒐𝒕 𝑺𝒆𝒕 𝑰𝒕 ! 📐", show_alert=True)
+      await retry_on_flood(query.answer)("Yᴏᴜ ʜᴀs ɴᴏᴛ sᴇᴛ ɪᴛ !", show_alert=True)
 
   try: await query.answer()
   except: pass
@@ -1706,8 +1706,8 @@ async def password_handler(_, query):
     thumb = "True" if not thumb.startswith("http") else thumb
 
   button = [
-    [InlineKeyboardButton("📐 sᴇᴛ/ᴄʜᴀɴɢᴇ 📐", callback_data="upass_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="upass_delete")],
-    [InlineKeyboardButton("🔙 ʙᴀᴄᴋ 🔙", callback_data="mus")]
+    [InlineKeyboardButton("Sᴇᴛ | ᴄʜᴀɴɢᴇ", callback_data="upass_change"), InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="upass_delete")],
+    [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")]
   ]
 
   if query.data == "upass":
@@ -1723,9 +1723,9 @@ async def password_handler(_, query):
       
       await call.delete()
     except asyncio.TimeoutError:
-      await retry_on_flood(query.answer)("📐 ᴛɪᴍᴇᴏᴜᴛ 📐")
+      await retry_on_flood(query.answer)("Tɪᴍᴇᴏᴜᴛ")
     except Exception as err:
-      await retry_on_flood(query.answer)(f"📐 {err} 📐", show_alert=True)
+      await retry_on_flood(query.answer)(f"{err}", show_alert=True)
     
     txt = users_txt.format(
       id=user_id,
@@ -1773,7 +1773,7 @@ async def password_handler(_, query):
 
       await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
     else:
-      await retry_on_flood(query.answer)("📐 𝒀𝒐𝒖 𝒉𝒂𝒔 𝒏𝒐𝒕 𝑺𝒆𝒕 𝑰𝒕 ! 📐", show_alert=True)
+      await retry_on_flood(query.answer)("Yᴏᴜ ʜᴀs ɴᴏᴛ sᴇᴛ ɪᴛ !", show_alert=True)
 
   try: await query.answer()
   except: pass
@@ -1805,8 +1805,8 @@ async def regex_handler(_, query):
 
   button = [
     [InlineKeyboardButton(i, callback_data=f"uregex_set_{i}") for i in range(1, 5)],
-    [InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ 🗑️", callback_data="uregex_delete")],
-    [InlineKeyboardButton("🔙 ʙᴀᴄᴋ 🔙", callback_data="mus")]
+    [InlineKeyboardButton("Dᴇʟᴇᴛᴇ", callback_data="uregex_delete")],
+    [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="mus")]
   ]
   if query.data == "uregex":
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
@@ -1860,6 +1860,6 @@ async def regex_handler(_, query):
 
       await retry_on_flood(query.edit_message_caption)(txt, reply_markup=InlineKeyboardMarkup(button))
     else:
-      await retry_on_flood(query.answer)("📐 𝒀𝒐𝒖 𝒉𝒂𝒔 𝒏𝒐𝒕 𝑺𝒆𝒕 𝑰𝒕 ! 📐", show_alert=True)
+      await retry_on_flood(query.answer)("Yᴏᴜ ʜᴀs ɴᴏᴛ sᴇᴛ ɪᴛ !", show_alert=True)
 
 
