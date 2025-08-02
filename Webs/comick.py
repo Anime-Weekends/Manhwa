@@ -59,16 +59,16 @@ class ComickWebs(Scraper):
     msg = f"<b><blockquote>◈ {title} (<code>{year}</code>)</b></blockquote></b>\n────────────────────────────\n" #msg += f"<b>Alt Names:</b> <code>{alts}</code>\n"
     #msg += f"<b>NSFW:</b> <code>{nsfw}</code>\n"
     msg += f"<b><blockquote>›› Rᴀᴛɪɴɢ :</b> {rating}\n" #msg += f"<b>Content Type:</b> <code>{content_rating}</code>\n" #msg += f"<b>Demographic:</b> <code>{demographic}</code>\n"
-    msg += f"›› Gᴇɴʀᴇs : {genres}\n"
-    msg += f"›› Lᴀsᴛ ᴄʜᴀᴘᴛᴇʀ : {last_chap}\n"
-    msg += f"›› Sᴛᴀᴛᴜs : {status}\n"
-    msg += f"›› Aᴜᴛʜᴏʀs : <{authors}</b></blockquote>\n"
+    msg += f"<b>›› Gᴇɴʀᴇs : </b>{genres}\n"
+    msg += f"<b>›› Lᴀsᴛ ᴄʜᴀᴘᴛᴇʀ : </b>{last_chap}\n"
+    msg += f"<b>›› Sᴛᴀᴛᴜs : </b>{status}\n"
+    msg += f"<b>›› Aᴜᴛʜᴏʀs : </b><{authors}</b></blockquote>\n────────────────────────────\n"
     if authors != artists:
         msg += f"<b><blockquote>›› Aʀᴛɪsᴛs: {artists}</b></blockquote>\n"
 
     su = int(len(desc)) + int(len(msg))
     if su < 1024:
-        msg += f"\n<b><blockquote>{desc}</b></blockquote>"
+        msg += f"\n<b><blockquote>›› {desc}</b></blockquote>\n"
         if len(msg) > 1024:
             msg = msg[:1023]
     else:
