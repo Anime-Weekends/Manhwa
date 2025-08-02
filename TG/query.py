@@ -401,7 +401,7 @@ async def subs_handler(client, query):
       button[0] = [InlineKeyboardButton("Uɴsᴜʙsᴄʀɪʙᴇ", callback_data=query.data)]
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
   else:
-    try: await query.answer("This is an old button, please redo the search", show_alert=True)
+    try: await query.answer("Tʜɪs ɪs ᴀɴ ᴏʟᴅ ʙᴜᴛᴛᴏɴ , ᴘʟᴇᴀsᴇ ʀᴇᴅᴏ ᴛʜᴇ sᴇᴀʀᴄʜ", show_alert=True)
     except: pass
 
 
@@ -520,11 +520,11 @@ async def bk_handler(client, query):
           button.append(
               [InlineKeyboardButton("Bᴀᴄᴋ", callback_data="bk.p")])
           await retry_on_flood(query.edit_message_text
-                               )("<b>Sᴇʟᴇᴄᴛ ᴍᴀɴɢᴀ</b>",
+                               )("<pre>Sᴇʟᴇᴄᴛ ᴍᴀɴɢᴀ</pre>",
                                  reply_markup=InlineKeyboardMarkup(button))
         else:
           await retry_on_flood(query.message.edit_text
-                               )("<b>Nᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ</b>",
+                               )("<pre>Nᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ</pre>",
                                  reply_markup=reply_markup)
 
 
@@ -549,7 +549,7 @@ async def updates_handler(_, query):
       try: await query.edit_message_media(InputMediaPhoto(random.choice(Vars.PICS)))
       except: pass
       
-      await retry_on_flood(query.edit_message_text)("<b>Sᴇʟᴇᴄᴛ ᴍᴀɴɢᴀ</b>", reply_markup=InlineKeyboardMarkup(button))
+      await retry_on_flood(query.edit_message_text)("<pre>Sᴇʟᴇᴄᴛ ᴍᴀɴɢᴀ</pre>", reply_markup=InlineKeyboardMarkup(button))
       try: await query.answer()
       except: pass
     else:
@@ -603,11 +603,11 @@ async def cb_handler(client, query):
 
         button.append([InlineKeyboardButton("Bᴀᴄᴋ", callback_data="bk.p")])
         await retry_on_flood(query.edit_message_text
-                             )("<b>Sᴇʟᴇᴄᴛ ᴍᴀɴɢᴀ</b>",
+                             )("<pre>Sᴇʟᴇᴄᴛ ᴍᴀɴɢᴀ</pre>",
                                reply_markup=InlineKeyboardMarkup(button))
       else:
         await retry_on_flood(query.edit_message_text
-                             )("<b>Nᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ</b>",
+                             )("<pre>Nᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ</pre>",
                                reply_markup=reply_markup)
 
       try:
@@ -766,7 +766,7 @@ async def file_name_handler(_, query):
     try: await query.edit_message_media(InputMediaPhoto(random.choice(Vars.PICS)))
     except: pass
     
-    await retry_on_flood(query.edit_message_caption)("<b><pre>Sᴇɴᴅ ғɪʟᴇ ɴᴀᴍᴇ</pre>\n────────────────────────────\n<b><blockquote>= <code>{manga_title}</code> : Mᴀɴɢᴀ ɴᴀᴍᴇ \n> <code>{chapter_num}</code> : Cʜᴀᴘᴛᴇʀ ɴᴜᴍʙᴇʀ</b></blockquote>\n────────────────────────────")
+    await retry_on_flood(query.edit_message_caption)("<b><pre>◈ Sᴇɴᴅ ғɪʟᴇ ɴᴀᴍᴇ</pre>\n────────────────────────────\n<b><blockquote>›› <code>{manga_title}</code> : Mᴀɴɢᴀ ɴᴀᴍᴇ\n›› <code>{chapter_num}</code> : Cʜᴀᴘᴛᴇʀ ɴᴜᴍʙᴇʀ</b></blockquote>\n────────────────────────────")
     try:
       call = await _.listen(user_id=int(user_id), timeout=60)
 
@@ -846,7 +846,7 @@ async def file_name_handler(_, query):
     try: await query.edit_message_media(InputMediaPhoto(random.choice(Vars.PICS)))
     except: pass
     
-    await retry_on_flood(query.edit_message_caption)("<pre>Sᴇɴᴅ ғɪʟᴇ ɴᴀᴍᴇ ʟᴇɴ</pre>\n────────────────────────────\n<b><blockquote>Exᴀᴍᴘʟᴇ: 15, 20, 50</b></blockquote>\n────────────────────────────")
+    await retry_on_flood(query.edit_message_caption)("<pre>◈ Sᴇɴᴅ ғɪʟᴇ ɴᴀᴍᴇ ʟᴇɴ</pre>\n────────────────────────────\n<b><blockquote>›› Exᴀᴍᴘʟᴇ: 15, 20, 50</b></blockquote>\n────────────────────────────")
     try:
       call = await _.listen(int(user_id), timeout=60)
       try:
@@ -959,7 +959,7 @@ async def caption_handler(_, query):
       try: await query.edit_message_media(InputMediaPhoto(random.choice(Vars.PICS)))
       except: pass
     
-    await retry_on_flood(query.edit_message_caption)("<pre>Sᴇɴᴅ ᴄᴀᴘᴛɪᴏɴ</pre>\n<u>Note:</u> <blockquote>Use HTML Tags For Bold, Italic,etc</blockquote>\n<u>Params:</u>\n=><code>{manga_title}</code>: Manga Name \n=> <code>{chapter_num}</code>: Chapter Number\n<code>{file_name}</code>: File Name</b>")
+    await retry_on_flood(query.edit_message_caption)("<pre>◈ Sᴇɴᴅ ᴄᴀᴘᴛɪᴏɴ</pre>\n────────────────────────────\n<blockquote>Usᴇ ʜᴛᴍʟ ᴛᴀɢs ғᴏʀ ʙᴏʟᴅ, ɪᴛᴀʟɪᴄ, ᴇᴛᴄ...</blockquote>\n────────────────────────────\n<b><blockquote>›› <code>{manga_title}</code> : Mᴀɴɢᴀ ɴᴀᴍᴇ \n›› <code>{chapter_num}</code> : Cʜᴀᴘᴛᴇʀ ɴᴜᴍʙᴇʀ\n›› <code>{file_name}</code> : Fɪʟᴇ ɴᴀᴍᴇ</b></blockquote>\n────────────────────────────")
     try:
       call = await _.listen(user_id=int(user_id), timeout=60)
 
@@ -1081,7 +1081,7 @@ async def thumb_handler(_, query):
       len = file_name_len,
       password = password,
     )
-    txt += "\n\n<blockquote><b>Cᴏɴsᴛᴀɴᴛ :- ᴛʜᴇ ᴘᴀʀᴄᴛɪᴄᴜʟᴀʀ ᴘᴏsᴛᴇʀ ᴏғ ᴍᴀɴɢᴀ ᴡɪʟʟ ᴀᴅᴅᴇᴅ ᴀs ғɪʟᴇ ᴛʜᴜᴍʙɴᴀʟɪ</b></blockquote>"
+    txt += "\n<blockquote><b>Cᴏɴsᴛᴀɴᴛ :- ᴛʜᴇ ᴘᴀʀᴄᴛɪᴄᴜʟᴀʀ ᴘᴏsᴛᴇʀ ᴏғ ᴍᴀɴɢᴀ ᴡɪʟʟ ᴀᴅᴅᴇᴅ ᴀs ғɪʟᴇ ᴛʜᴜᴍʙɴᴀʟɪ</b></blockquote>"
     
     if thumb:
       try: await query.edit_message_media(InputMediaPhoto(thumb))
@@ -1117,7 +1117,7 @@ async def thumb_handler(_, query):
     await retry_on_flood(query.answer)("Sᴜᴄᴇssғᴜʟʟʏ ᴀᴅᴅᴇᴅ")
     
   elif query.data == "uth_change":
-    await retry_on_flood(query.edit_message_caption)("<pre>Sᴇɴᴅ ᴛʜᴜᴍʙɴᴀɪʟ</pre>\n────────────────────────────\n<blockquote><b>›› Yᴏᴜ ᴄᴀɴ sᴇɴᴅ ʟɪɴᴋs ᴏʀ ɪᴍᴀɢᴇs ᴅᴏᴄs..</blockquote></b>\n────────────────────────────")
+    await retry_on_flood(query.edit_message_caption)("<pre>◈ Sᴇɴᴅ ᴛʜᴜᴍʙɴᴀɪʟ</pre>\n────────────────────────────\n<blockquote><b>›› Yᴏᴜ ᴄᴀɴ sᴇɴᴅ ʟɪɴᴋs ᴏʀ ɪᴍᴀɢᴇs ᴅᴏᴄs..</blockquote></b>\n────────────────────────────")
     try:
       call = await _.listen(user_id=int(user_id), timeout=60)
       call_type = call.photo or call.document or None
@@ -1391,7 +1391,7 @@ async def dump_handler(_, query):
   if query.data == "udc":
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
   elif query.data == "udc_change":
-    await retry_on_flood(query.edit_message_caption)("<pre>Sᴇɴᴅ ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ<pre>\n────────────────────────────<b><blockquote>›› Yᴏᴜ ᴄᴀɴ sᴇɴᴅ ᴜsᴇʀɴᴀᴍᴇ (ᴡɪᴛʜᴏᴜᴛ @) ᴏʀ ᴄʜᴀɴɴᴇʟ ɪᴅ ᴏʀ ғᴏʀᴡᴀʀᴅ ᴍᴇssᴀɢᴇ ғʀᴏᴍ ᴄʜᴀɴɴᴇʟ..</blockquote></b>\n────────────────────────────")
+    await retry_on_flood(query.edit_message_caption)("<pre>◈ Sᴇɴᴅ ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ<pre>\n────────────────────────────<b><blockquote>›› Yᴏᴜ ᴄᴀɴ sᴇɴᴅ ᴜsᴇʀɴᴀᴍᴇ (ᴡɪᴛʜᴏᴜᴛ @) ᴏʀ ᴄʜᴀɴɴᴇʟ ɪᴅ ᴏʀ ғᴏʀᴡᴀʀᴅ ᴍᴇssᴀɢᴇ ғʀᴏᴍ ᴄʜᴀɴɴᴇʟ..</blockquote></b>\n────────────────────────────")
     try:
       call = await _.listen(user_id=int(user_id), timeout=60)
       if call.text:
@@ -1611,7 +1611,7 @@ async def megre_handler(_, query):
       try: await query.edit_message_media(InputMediaPhoto(random.choice(Vars.PICS)))
       except: pass
     
-    await retry_on_flood(query.edit_message_caption)("<b>📐 Send Megre Size 📐 \n<u>Note:</u> <blockquote>It's Number For Megre. i.e 2, 3 ,4 ,5,etc </blockquote></b>")
+    await retry_on_flood(query.edit_message_caption)("<pre>◈ Sᴇɴᴅ ᴍᴇɢʀᴇ sɪᴢᴇ</pre>\n────────────────────────────\n<b><blockquote>›› Iᴛ's ɴᴜᴍʙᴇʀ ғᴏʀ ᴍᴇɢʀᴇ. ɪ.ᴇ 2, 3 ,4 ,5, ᴇᴛᴄ...</blockquote></b>\n────────────────────────────")
     try:
       call = await _.listen(user_id=int(user_id), timeout=60)
       call_int = int(call.text)
@@ -1713,7 +1713,7 @@ async def password_handler(_, query):
   if query.data == "upass":
     await retry_on_flood(query.edit_message_reply_markup)(InlineKeyboardMarkup(button))
   elif query.data == "upass_change":
-    await retry_on_flood(query.edit_message_caption)("<b>📐 Send Password 📐 \n<u>Note:</u> <blockquote>It's Password For PDF.</blockquote></b>")
+    await retry_on_flood(query.edit_message_caption)("<pre>◈ Sᴇɴᴅ ᴘᴀssᴡᴏʀᴅ</pre>\n────────────────────────────\n<b><blockquote>›› Iᴛ's ᴘᴀssᴡᴏʀᴅ ғᴏʀ ᴘᴅғ.</blockquote></b>\n────────────────────────────")
     try:
       call = await _.listen(user_id=int(user_id), timeout=60)
       password = call.text
