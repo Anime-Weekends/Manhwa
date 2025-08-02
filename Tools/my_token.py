@@ -85,7 +85,7 @@ async def get_token(message, user_id):
         [InlineKeyboardButton("⛓️‍💥 Close ⛓️‍💥", callback_data="close")],
     ])
 
-    photo = "https://telegra.ph/file/2cc4a77bcf37422aa1c68.jpg"  # Replace with your image URL
+    photo = "https://i.ibb.co/PvpdSpV7/photo-2025-07-21-17-44-51-7529592614991953944.jpg"  # Replace with your image URL
 
     await message.reply_photo(
         photo=photo,
