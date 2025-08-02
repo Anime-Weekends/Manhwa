@@ -31,3 +31,7 @@ if UPSTREAM_REPO is not None:
             print("Something went wrong while updating, check UPSTREAM_REPO if valid or not!")
     except Exception as err:
         print(err)
+
+#──────────────────────
+#────────ᴊᴇғғʏ ᴅᴇᴠ─────────
+#──────────────────────
