@@ -35,9 +35,10 @@ import asyncio
 import time
 
 @Bot.on_message(filters.command("start"))
-async def start(client, message: Message):
-    if Vars.IS_PRIVATE and message.chat.id not in Vars.ADMINS:
-        return await message.reply("<code>You cannot use me baby</code>")
+async def start(client, message):
+    if Vars.IS_PRIVATE:
+        if message.chat.id not in Vars.ADMINS:
+            return await message.reply("<code>You cannot use me baby </code>")
 
     if len(message.command) > 1:
         if message.command[1] != "start":
@@ -55,72 +56,28 @@ async def start(client, message: Message):
                 await sts.delete()
             return
 
+    # Static image URL (replace with your preferred one)
+    photo = "https://i.ibb.co/PvpdSpV7/photo-2025-07-21-17-44-51-7529592614991953944.jpg"
+
     ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
     await message.reply_photo(
-        photo="https://i.ibb.co/dJW7wm3X/photo-2025-07-31-20-51-24-7533357364280295448.jpg",
+        photo,
         caption=(
-            "<b><i>Welcome to the best manga PDF bot on Telegram!!</i></b>\n\n"
-            "<b><i>How to use? Just type the name of some manga you want to keep up to date.</i></b>\n\n"
-            "<b><i>For example:</i></b>\n"
-            "<code>One Piece</code>\n\n"
+            "<pre>Hᴇʏᴏ ᴄᴜᴛɪᴇ</pre>\n"
+            "<b><blockquote>I'ᴍ ʏᴏᴜʀ ᴍᴀɴɢᴀ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ ʙᴏᴛ. Jᴜsᴛ sᴇɴᴅ ᴍᴇ ᴀ ᴛɪᴛʟᴇ, ᴀɴᴅ ɪ’ʟʟ ғɪɴᴅ ɪᴛ ғᴏʀ ʏᴏᴜ ɪɴ ᴄʟᴇᴀʀ, ʜɪɢʜ-Qᴜᴀʟɪᴛʏ ғᴏʀᴍᴀᴛ.</b></blockquote>\n"
             f"<b><i>Ping:- {ping}</i></b>\n"
             "<b><i>Check /help for more information.</i></b>"
         ),
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("1", callback_data="btn_1"), InlineKeyboardButton("2", callback_data="btn_2")],
-            [InlineKeyboardButton("3", callback_data="btn_3")],
-            [InlineKeyboardButton("4 - About", callback_data="btn_about"),
-             InlineKeyboardButton("5 - Close", callback_data="btn_close")]
+            [
+                InlineKeyboardButton("Mᴀɪɴ ᴄʜᴀɴɴᴇʟ", url="https://t.me/EmitingStars_Botz"),
+                InlineKeyboardButton("Sᴜᴘᴘᴏʀᴛ", url="https://t.me/+HZuPVe0l-F1mM2Jl")
+            ],
+            [
+                InlineKeyboardButton("Dᴇᴠᴇʟᴏᴘᴇʀ", url="http://t.me/RexySama")
+            ]
         ])
     )
-
-
-@Bot.on_callback_query()
-async def button_callback(client: Client, callback_query: CallbackQuery):
-    data = callback_query.data
-
-    if data == "btn_about":
-        await callback_query.message.edit_media(
-            media=InputMediaPhoto(
-                media="https://i.ibb.co/vvF5c8R/sample-about-image.jpg",  # ✅ Use your real image URL here
-                caption="<b>ℹ️ This bot lets you search and get the latest manga in PDF format easily.</b>"
-            ),
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("🔙 Back", callback_data="btn_back"),
-                 InlineKeyboardButton("🌐 Visit Repo", url="https://github.com/Dra-Sama/mangabot")]
-            ])
-        )
-
-    elif data == "btn_back":
-        ping = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - Vars.PING))
-        await callback_query.message.edit_media(
-            media=InputMediaPhoto(
-                media="https://i.ibb.co/dJW7wm3X/photo-2025-07-31-20-51-24-7533357364280295448.jpg",
-                caption=(
-                    "<b><i>Welcome to the best manga PDF bot on Telegram!!</i></b>\n\n"
-                    "<b><i>How to use? Just type the name of some manga you want to keep up to date.</i></b>\n\n"
-                    "<b><i>For example:</i></b>\n"
-                    "<code>One Piece</code>\n\n"
-                    f"<b><i>Ping:- {ping}</i></b>\n"
-                    "<b><i>Check /help for more information.</i></b>"
-                )
-            ),
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("1", callback_data="btn_1"), InlineKeyboardButton("2", callback_data="btn_2")],
-                [InlineKeyboardButton("3", callback_data="btn_3")],
-                [InlineKeyboardButton("4 - About", callback_data="btn_about"),
-                 InlineKeyboardButton("5 - Close", callback_data="btn_close")]
-            ])
-        )
-
-    elif data == "btn_close":
-        await callback_query.message.delete()
-
-    elif data in ["btn_1", "btn_2", "btn_3"]:
-        await callback_query.answer(f"You clicked button {data[-1]}", show_alert=True)
-
-    else:
-        await callback_query.answer("Unknown button clicked.", show_alert=True)
 
 
 @Bot.on_message(filters.private)
