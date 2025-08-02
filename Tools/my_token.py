@@ -68,8 +68,6 @@ def verify_token(user_id):
             return True
     return False
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-
 async def get_token(message, user_id):
     new_token = generate_token()
     expiration_time = time.time() + (dr * 3600)  # Token valid for 'dr' hours
